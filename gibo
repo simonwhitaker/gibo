@@ -1,0 +1,114 @@
+#!/bin/sh
+
+# Script for easily accessing gitignore boilerplates from
+# https://github.com/github/gitignore
+
+# Change log
+# v1.0 1-May-2012 First public release
+
+remote_repo=https://github.com/github/gitignore.git
+local_repo=$HOME/.gitignore-boilerplates
+
+version() {
+    echo "$(basename $0) 1.0 by Simon Whitaker <simon@goosoftware.co.uk> http://www.goosoftware.co.uk"
+}
+
+usage() {
+    version
+cat << EOF >&2
+
+Fetches gitignore boilerplates from github.com/github/gitignore
+
+Usage:
+    $(basename $0) [options] [boilerplate]
+
+Example:
+    $(basename $0) Python TextMate >> .gitignore
+    
+Options:
+    -l, --list          List available boilerplates
+    -u, --upgrade       Upgrade list of available boilerplates
+    -h, --help          Display this help text
+    -v, --version       Display current script version
+EOF
+}
+
+clone() {
+    echo "Cloning $remote_repo to $local_repo"
+    git clone "$remote_repo" "$local_repo"
+}
+
+list() {
+    if [ ! -e "$local_repo/.git" ]; then
+        clone
+    fi
+    
+    echo "=== Languages ==="
+    echo
+    for path in $(ls "$local_repo"/*.gitignore | sort -f); do
+        filename=$(basename $path)
+        echo ${filename%.*}
+    done
+
+    echo
+    echo "=== Global ==="
+    echo
+    for path in $(ls "$local_repo"/Global/*.gitignore | sort -f); do
+        filename=$(basename $path)
+        echo ${filename%.*}
+    done
+}
+
+upgrade() {
+    if [ ! -e "$local_repo/.git" ]; then
+        clone
+    else
+        cd "$local_repo"
+        git pull origin master
+    fi
+}
+
+dump() {
+    arg=$1
+    
+    language_file="$local_repo/$1.gitignore"
+    global_file="$local_repo/Global/$1.gitignore"
+    
+    if [ -e $language_file ]; then
+        echo "## $language_file"
+        echo
+        cat $language_file
+    elif [ -e $global_file ]; then
+        echo "## $global_file"
+        echo
+        cat $global_file
+    else
+        echo "Unknown argument: $1" >&2
+    fi
+}
+
+# --- Main entry point ----------------------
+
+if [ $# == 0 ]; then
+    usage
+    exit 0
+fi
+
+# Parse comand-line options
+while [ $# -gt 0 ]; do
+    case $1 in
+        -v | --version )
+            version
+            exit 1;;
+        -l | --list )
+            list
+            ;;
+        -u | --upgrade )
+            upgrade
+            ;;
+        * ) # default case
+            dump $1
+            ;;
+    esac
+    shift
+done
