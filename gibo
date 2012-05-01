@@ -100,7 +100,7 @@ dump() {
 
 # --- Main entry point ----------------------
 
-if [ $# == 0 ]; then
+if [ $# -eq 0 ]; then
     usage
     exit 0
 fi
