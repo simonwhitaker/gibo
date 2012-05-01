@@ -20,7 +20,8 @@ cat << EOF >&2
 Fetches gitignore boilerplates from github.com/github/gitignore
 
 Usage:
-    $(basename $0) [options] [boilerplate]
+    $(basename $0) [options] 
+    $(basename $0) [boilerplate boilerplate...]
 
 Example:
     $(basename $0) Python TextMate >> .gitignore
