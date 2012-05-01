@@ -105,6 +105,24 @@ if [ $# == 0 ]; then
     exit 0
 fi
 
+# Sanity check command-line options. We want either
+# options like -l or arguments like Python, but not 
+# both
+has_opts=0
+has_args=0
+for opt in $@; do
+    if [ $( echo $opt | cut -c1) == "-" ]; then
+        has_opts=1
+    else
+        has_args=1
+    fi
+done
+
+if [ $has_opts == 1 -a $has_args == 1 ]; then
+    usage
+    exit 1
+fi
+
 # Parse comand-line options
 while [ $# -gt 0 ]; do
     case $1 in
