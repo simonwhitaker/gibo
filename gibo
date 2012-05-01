@@ -111,14 +111,14 @@ fi
 has_opts=0
 has_args=0
 for opt in $@; do
-    if [ $( echo $opt | cut -c1) == "-" ]; then
+    if [ $( echo $opt | cut -c1) = "-" ]; then
         has_opts=1
     else
         has_args=1
     fi
 done
 
-if [ $has_opts == 1 -a $has_args == 1 ]; then
+if [ $has_opts -eq 1 -a $has_args -eq 1 ]; then
     usage
     exit 1
 fi
