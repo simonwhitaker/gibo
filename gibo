@@ -74,14 +74,18 @@ dump() {
     language_file="$local_repo/$1.gitignore"
     global_file="$local_repo/Global/$1.gitignore"
     
-    if [ -e $language_file ]; then
-        echo "## $language_file"
+    if [ -e "$language_file" ]; then
+        echo "### $language_file"
         echo
-        cat $language_file
-    elif [ -e $global_file ]; then
-        echo "## $global_file"
+        cat "$language_file"
         echo
-        cat $global_file
+        echo
+    elif [ -e "$global_file" ]; then
+        echo "### $global_file"
+        echo
+        cat "$global_file"
+        echo
+        echo
     else
         echo "Unknown argument: $1" >&2
     fi
