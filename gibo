@@ -39,16 +39,20 @@ clone() {
     git clone "$remote_repo" "$local_repo"
 }
 
-list() {
+init() {
     if [ ! -e "$local_repo/.git" ]; then
         clone
     fi
+}
+
+list() {
+    init
     
     echo "=== Languages ==="
     echo
     for path in $(ls "$local_repo"/*.gitignore | sort -f); do
         filename=$(basename $path)
-        echo ${filename%.*}
+        echo "${filename%.*}"
     done
 
     echo
@@ -70,6 +74,8 @@ upgrade() {
 }
 
 dump() {
+    init
+    
     arg=$1
     
     language_file="$local_repo/$1.gitignore"
