@@ -60,7 +60,7 @@ list() {
     echo
     for path in $(ls "$local_repo"/Global/*.gitignore | sort -f); do
         filename=$(basename $path)
-        echo ${filename%.*}
+        echo "${filename%.*}"
     done
 }
 
