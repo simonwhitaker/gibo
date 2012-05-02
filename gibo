@@ -35,7 +35,8 @@ remote_repo=https://github.com/github/gitignore.git
 local_repo=$HOME/.gitignore-boilerplates
 
 version() {
-    echo "$(basename $0) 1.0 by Simon Whitaker <simon@goosoftware.co.uk> http://www.goosoftware.co.uk"
+    echo "$(basename $0) 1.0 by Simon Whitaker <simon@goosoftware.co.uk>"
+    echo "https://github.com/simonwhitaker/gitignore-boilerplates"
 }
 
 usage() {
