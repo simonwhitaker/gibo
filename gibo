@@ -154,12 +154,17 @@ while [ $# -gt 0 ]; do
     case $1 in
         -v | --version )
             version
-            exit 1;;
+            exit 1
+            ;;
         -l | --list )
             list
             ;;
         -u | --upgrade )
             upgrade
+            ;;
+        -h | --help )
+            usage
+            exit 1
             ;;
         * ) # default case
             dump $1
