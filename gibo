@@ -102,8 +102,6 @@ upgrade() {
 dump() {
     init
     
-    arg=$1
-    
     language_file="$local_repo/$1.gitignore"
     global_file="$local_repo/Global/$1.gitignore"
     
