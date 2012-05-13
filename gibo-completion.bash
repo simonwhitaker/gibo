@@ -13,10 +13,10 @@
 #     /usr/local/etc/bash_completion.d
 #     ~/bash_completion.d
 # 
-# or copy it somewhere (e.g. ~/.gibo-completion.sh) and put the
+# or copy it somewhere (e.g. ~/.gibo-completion.bash) and put the
 # following in your .bashrc:
 # 
-#     source ~/.gibo-completion.sh
+#     source ~/.gibo-completion.bash
 # 
 # CREDITS
 # 
