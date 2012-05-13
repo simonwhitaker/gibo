@@ -12,10 +12,12 @@ For additional usage instructions, run `gibo` without arguments.
 
 Copy or symlink `gibo` into your $PATH. Done.
 
-## Bash tab completion
+## Tab completion in bash and zsh
 
-Bash users can enjoy the deluxe gibo experience by enabling tab 
+bash and zsh users can enjoy the deluxe gibo experience by enabling tab 
 completion of available boilerplate names. 
+
+### bash instructions
 
 Copy `gibo-completion.bash` into a `bash_completion.d` folder:
 
@@ -23,10 +25,20 @@ Copy `gibo-completion.bash` into a `bash_completion.d` folder:
 * `/usr/local/etc/bash_completion.d`
 * `~/bash_completion.d`
 
-or copy it somewhere (e.g. ~/.gibo-completion.sh) and put the
+or copy it somewhere (e.g. ~/.gibo-completion.bash) and put the
 following in your .bashrc:
 
-    source ~/.gibo-completion.sh
+    source ~/.gibo-completion.bash
+
+### zsh instructions
+
+Copy `gibo-completion.zsh` somewhere (e.g. ~/.gibo-completion.zsh)
+and put the following in your .zshrc:
+
+    source ~/.gibo-completion.zsh
+
+Alternatively, you can use `gibo-completion.zsh` as an 
+[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin.
 
 ## Credits
 
