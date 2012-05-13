@@ -23,6 +23,6 @@
 
 _gibo()
 {
-    reply=($( find $HOME/.gitignore-boilerplates -name "*.gitignore" -exec basename \{\} .gitignore \; ))
+    compadd $( find $HOME/.gitignore-boilerplates -name "*.gitignore" -exec basename \{\} .gitignore \; )
 }
-compctl -K _gibo gibo
+compdef _gibo gibo
