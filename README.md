@@ -38,7 +38,8 @@ and put the following in your .zshrc:
     source ~/.gibo-completion.zsh
 
 Alternatively, you can use `gibo-completion.zsh` as an 
-[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin.
+[oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin
+by following [these instructions](https://github.com/simonwhitaker/gitignore-boilerplates/wiki/Using-gibo-as-an-ohmyzsh-plugin).
 
 ## Credits
 
