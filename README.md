@@ -10,13 +10,14 @@ For additional usage instructions, run `gibo` without arguments.
 
 ## Installation
 
-`gibo` is easily installed as a standalone script:
+Just download `gibo` and put it somewhere on your $PATH. Then:
 
-    $ curl http://git.io/gibo -sLo ~/bin/gibo && chmod +x ~/bin/gibo
+    chmod +x /path/to/gibo   # Make gibo executable
+    gibo -u                  # Initialise gibo
 
-Assuming "~/bin/" is in your $PATH, you're ready to roll:
+You can automate this with the following one-liner (assuming /usr/local/bin is on your $PATH).
 
-    $ gibo --list # will initialize gibo for you
+    curl http://git.io/gibo -sLo /usr/local/bin/gibo && chmod +x /usr/local/bin/gibo && gibo -u
 
 ## Tab completion in bash and zsh
 
