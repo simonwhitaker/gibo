@@ -16,7 +16,7 @@ For additional usage instructions, run `gibo` without arguments.
 
 Assuming "~/bin/" is in your $PATH, you're ready to roll:
 
-    $ gibo --list # will initialize ~/.gitignore-boilerplates for you
+    $ gibo --list # will initialize gibo for you
 
 ## Tab completion in bash and zsh
 
@@ -50,3 +50,6 @@ by following [these instructions](https://github.com/simonwhitaker/gitignore-boi
 ## Credits
 
 gibo was written by Simon Whitaker ([@s1mn](http://twitter.com/s1mn))
+
+Thanks to [yevgenko](https://github.com/yevgenko) for adding the curl-based
+installation instructions.
