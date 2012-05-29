@@ -16,7 +16,7 @@ For additional usage instructions, run `gibo` without arguments.
 
 Assuming "~/bin/" is in your $PATH, you're ready to roll:
 
-    $ gibo --list # will initialize ~/.gitignore-boilerplates for you
+    $ gibo --upgrade # will initialize ~/.gitignore-boilerplates for you
 
 ## Tab completion in bash and zsh
 
