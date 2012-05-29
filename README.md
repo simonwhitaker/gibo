@@ -10,7 +10,13 @@ For additional usage instructions, run `gibo` without arguments.
 
 ## Installation
 
-Copy or symlink `gibo` into your $PATH. Done.
+`gibo` is easily installed as a standalone script:
+
+    $ curl http://git.io/gibo -sLo ~/bin/gibo && chmod +x ~/bin/gibo
+
+Assuming "~/bin/" is in your $PATH, you're ready to roll:
+
+    $ gibo --list # will initialize ~/.gitignore-boilerplates for you
 
 ## Tab completion in bash and zsh
 
