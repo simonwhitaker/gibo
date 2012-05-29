@@ -17,7 +17,8 @@ Just download `gibo` and put it somewhere on your $PATH. Then:
 
 You can automate this with the following one-liner (assuming /usr/local/bin is on your $PATH).
 
-    curl http://git.io/gibo -sLo /usr/local/bin/gibo && chmod +x /usr/local/bin/gibo && gibo -u
+    curl https://raw.github.com/simonwhitaker/gitignore-boilerplates/master/gibo \
+        -so /usr/local/bin/gibo && chmod +x /usr/local/bin/gibo && gibo -u
 
 ## Tab completion in bash and zsh
 
