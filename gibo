@@ -10,7 +10,7 @@ remote_repo=https://github.com/github/gitignore.git
 local_repo=$HOME/.gitignore-boilerplates
 
 version() {
-    echo "$(basename $0) 1.0 by Simon Whitaker <simon@goosoftware.co.uk>"
+    echo "$(basename $0) 1.0.1 by Simon Whitaker <simon@goosoftware.co.uk>"
     echo "https://github.com/simonwhitaker/gitignore-boilerplates"
 }
 
@@ -36,13 +36,17 @@ EOF
 }
 
 clone() {
-    echo "Cloning $remote_repo to $local_repo"
-    git clone "$remote_repo" "$local_repo"
+    if [ $1 -a $1 = '--silently' ]; then
+        git clone -q "$remote_repo" "$local_repo"
+    else
+        echo "Cloning $remote_repo to $local_repo"
+        git clone "$remote_repo" "$local_repo"
+    fi
 }
 
 init() {
     if [ ! -e "$local_repo/.git" ]; then
-        clone
+        clone $1
     fi
 }
 
@@ -75,7 +79,7 @@ upgrade() {
 }
 
 dump() {
-    init
+    init --silently
     
     language_file="$local_repo/$1.gitignore"
     global_file="$local_repo/Global/$1.gitignore"
