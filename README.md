@@ -21,10 +21,10 @@ Just download `gibo` and put it somewhere on your $PATH. Then:
     chmod +x /path/to/gibo   # Make gibo executable
     gibo -u                  # Initialise gibo
 
-You can automate this with the following one-liner (assuming /usr/local/bin is on your $PATH).
+You can automate this with the following one-liner (assuming ~/bin is on your $PATH).
 
     curl https://raw.github.com/simonwhitaker/gitignore-boilerplates/master/gibo \
-        -so /usr/local/bin/gibo && chmod +x /usr/local/bin/gibo && gibo -u
+        -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
 
 ## Tab completion in bash and zsh
 
