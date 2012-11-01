@@ -10,6 +10,12 @@ For additional usage instructions, run `gibo` without arguments.
 
 ## Installation
 
+### Installation on OS X using [Homebrew](http://mxcl.github.com/homebrew/)
+
+    brew install gibo
+
+### Installation on other platforms
+
 Just download `gibo` and put it somewhere on your $PATH. Then:
 
     chmod +x /path/to/gibo   # Make gibo executable
