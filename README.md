@@ -1,6 +1,6 @@
-# gitignore-boilerplates
+# gibo: fast access to .gitignore boilerplates
 
-A shell script for easily accessing gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore)
+**gibo** (short for .gitignore boilerplates) is a shell script to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
 
 ## Typical usage
 
@@ -23,7 +23,7 @@ Just download `gibo` and put it somewhere on your $PATH. Then:
 
 You can automate this with the following one-liner (assuming ~/bin is on your $PATH).
 
-    curl https://raw.github.com/simonwhitaker/gitignore-boilerplates/master/gibo \
+    curl https://raw.github.com/simonwhitaker/gibo/master/gibo \
         -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
 
 ## Tab completion in bash and zsh
