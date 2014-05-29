@@ -14,6 +14,10 @@ For additional usage instructions, run `gibo` without arguments.
 
     brew install gibo
 
+#### Upgrade on OS X using [Homebrew](http://mxcl.github.com/homebrew/)
+
+    brew upgrade gibo
+
 ### Installation on other platforms
 
 Just download `gibo` and put it somewhere on your $PATH. Then:
