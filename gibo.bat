@@ -203,7 +203,6 @@ goto :setup
     if exist "%language_file%" (
         if defined __append (
             (
-                echo.
                 echo ### %~1.gitignore
                 echo.
                 type "%language_file%"
@@ -211,7 +210,6 @@ goto :setup
                 echo.
             ) >> .gitignore
         ) else (
-            echo.
             echo ### %~1.gitignore
             echo.
             type "%language_file%"
@@ -221,7 +219,6 @@ goto :setup
     ) else if exist "%global_file%" (
         if defined __append (
             (
-                echo.
                 echo ### %~1.gitignore
                 echo.
                 type "%global_file%"
@@ -229,7 +226,6 @@ goto :setup
                 echo.
             ) >> .gitignore
         ) else (
-            echo.
             echo ### %~1.gitignore
             echo.
             type "%global_file%"
