@@ -34,10 +34,6 @@ goto :setup
     echo     -u, --upgrade       Upgrade list of available boilerplates
     echo     -h, --help          Display this help text
     echo     -v, --version       Display current script version
-    echo.
-    echo     --append [boilerplate boilerplate...]
-    echo          Appends the gitignore for boilerplate^(s^) to the
-    echo          .gitignore in the current directory.
 
     goto :eof
 
@@ -50,7 +46,6 @@ goto :setup
     set "__quiet="
     set "__verbose="
     set "__pause="
-    set "__append="
 
     set "remote_repo=https://github.com/github/gitignore.git"
     rem set "local_repo=%UserProfile%\.gitignore-boilerplates"
@@ -90,9 +85,6 @@ goto :setup
 
     if /i "%a2%"=="-p" set "__pause=1" && shift && goto :parse
     if /i "%a2%"=="/p" set "__pause=1" && shift && goto :parse
-
-    if /i "%a2%"=="-a" set "__append=1" && shift && goto :parse
-    if /i "%a2%"=="/a" set "__append=1" && shift && goto :parse
 
     rem rem Takes the next argument also (calls shift twice)..
     rem if /i "%a2%"=="-repo" set "remote_repo=%~2" && shift && shift && goto :parse
@@ -196,37 +188,17 @@ goto :setup
     set "global_file=%local_repo%\Global\%~1.gitignore"
 
     if exist "%language_file%" (
-        if defined __append (
-            (
-                echo ### %~1
-                echo.
-                type "%language_file%"
-                echo.
-                echo.
-            ) >> .gitignore
-        ) else (
-            echo ### %~1
-            echo.
-            type "%language_file%"
-            echo.
-            echo.
-        )
+        echo ### %~1
+        echo.
+        type "%language_file%"
+        echo.
+        echo.
     ) else if exist "%global_file%" (
-        if defined __append (
-            (
-                echo ### %~1
-                echo.
-                type "%global_file%"
-                echo.
-                echo.
-            ) >> .gitignore
-        ) else (
-            echo ### %~1
-            echo.
-            type "%global_file%"
-            echo.
-            echo.
-        )
+        echo ### %~1
+        echo.
+        type "%global_file%"
+        echo.
+        echo.
     ) else (
         echo Unknown argument: %~1
     )
