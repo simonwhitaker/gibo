@@ -32,20 +32,18 @@ You can automate this with the following one-liner (assuming ~/bin is on your $P
 
 The easiest way to install `gibo` on Windows is to use [scoop](https://github.com/lukesampson/scoop), a PowerShell-based package-manager of sorts for Windows:
 
-    scoop update
-    scoop install gibo
+    scoop update && scoop install gibo
 
 A great benefit to using scoop, is that it provides an easy way to update its packages, including gibo:
 
-    scoop update
-    scoop update gibo
+    scoop update && scoop update gibo
 
 **git installion**
 
 You can download the whole `gibo` repo directly from GitHub:
 
     md "C:\Users\<Your User>\bin"
-		cd /D "C:\Users\<Your User>\bin"
+    cd /D "C:\Users\<Your User>\bin"
     git clone https://github.com/simonwhitaker/gibo.git gibo
 
 Then add the full gibo directory (`C:\Users\<Your User>\bin\gibo`) to your system's PATH environment variable.
