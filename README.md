@@ -18,7 +18,7 @@ For additional usage instructions, run `gibo` without arguments.
 
     brew upgrade gibo
 
-### Installation on other platforms
+### Installation on other (*nix) platforms
 
 Just download `gibo` and put it somewhere on your $PATH. Then:
 
@@ -64,8 +64,8 @@ A good directory to put the file is `C:\Users\<Your User>\bin` and add that dire
 
 ## Tab completion in bash and zsh
 
-bash and zsh users can enjoy the deluxe gibo experience by enabling tab 
-completion of available boilerplate names. 
+bash and zsh users can enjoy the deluxe gibo experience by enabling tab
+completion of available boilerplate names.
 
 Sorry, there is no tab completion support in Windows.
 
@@ -89,7 +89,7 @@ and put the following in your .zshrc:
 
     source ~/.gibo-completion.zsh
 
-Alternatively, you can use `gibo-completion.zsh` as an 
+Alternatively, you can use `gibo-completion.zsh` as an
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin
 by following [these instructions](https://github.com/simonwhitaker/gitignore-boilerplates/wiki/Using-gibo-as-an-ohmyzsh-plugin).
 
