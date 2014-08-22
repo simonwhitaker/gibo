@@ -13,8 +13,7 @@ goto :setup
 
 
 :version
-    echo %basename% 1.0 by Simon Whitaker ^<simon@goosoftware.co.uk^>
-    rem echo updated for DOS by Kody Brown ^<thewizard@wasatchwizard.com^>
+    echo %basename% 1.0.3 by Simon Whitaker ^<simon@goosoftware.co.uk^>
     echo https://github.com/simonwhitaker/gitignore-boilerplates
     goto :eof
 
