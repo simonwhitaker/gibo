@@ -8,10 +8,12 @@
 
 remote_repo=https://github.com/github/gitignore.git
 local_repo=$HOME/.gitignore-boilerplates
+current_repo_rev=$(git -C $local_repo rev-parse HEAD)
+remote_web_root=https://raw.github.com/github/gitignore/$current_repo_rev
 
 version() {
-    echo "$(basename $0) 1.0.1 by Simon Whitaker <simon@goosoftware.co.uk>"
-    echo "https://github.com/simonwhitaker/gitignore-boilerplates"
+    echo "$(basename $0) 1.0.3 by Simon Whitaker <simon@goosoftware.co.uk>"
+    echo "https://github.com/simonwhitaker/gibo"
 }
 
 usage() {
@@ -85,13 +87,13 @@ dump() {
     global_file="$local_repo/Global/$1.gitignore"
     
     if [ -e "$language_file" ]; then
-        echo "### $language_file"
+        echo "### $remote_web_root/$1.gitignore"
         echo
         cat "$language_file"
         echo
         echo
     elif [ -e "$global_file" ]; then
-        echo "### $global_file"
+        echo "### $remote_web_root/Global/$1.gitignore"
         echo
         cat "$global_file"
         echo
