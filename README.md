@@ -35,7 +35,7 @@ The easiest way to install `gibo` on Windows is to use [scoop](https://github.co
     scoop update
     scoop install gibo
 
-A great benefit to using scoop, it that it provides an easy way to update its packages, using:
+A great benefit to using scoop, is that it provides an easy way to update its packages, including gibo:
 
     scoop update
     scoop update gibo
