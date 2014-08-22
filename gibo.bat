@@ -44,10 +44,6 @@ goto :setup
 
 
 :setup
-    if not defined __quiet (
-        if defined __verbose echo setup^(^)
-    )
-
     set "basename=%~n0"
     set "baseext=%~x0"
     set "basepath=%~dp0"
