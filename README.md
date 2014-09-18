@@ -27,7 +27,7 @@ Just download `gibo` and put it somewhere on your $PATH. Then:
 
 You can automate this with the following one-liner (assuming ~/bin is on your $PATH).
 
-    curl https://raw.github.com/simonwhitaker/gibo/master/gibo \
+    curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo \
         -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
 
 ### Installation on Windows
