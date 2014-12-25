@@ -20,7 +20,7 @@
 #
 # CREDITS
 #
-# Written by Simon Whitaker <simon@goosoftware.co.uk>
+# Written by Simon Whitaker <sw@netcetera.org>
 
 _gibo()
 {
