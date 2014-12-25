@@ -60,7 +60,7 @@ list() {
     for path in $(ls "$local_repo"/*.gitignore | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
-    done
+    done | column
 
     echo
     echo "=== Global ==="
@@ -68,7 +68,7 @@ list() {
     for path in $(ls "$local_repo"/Global/*.gitignore | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
-    done
+    done | column
 }
 
 upgrade() {
