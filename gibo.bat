@@ -1,4 +1,4 @@
-@rem #!/dos/rocks!
+@::!/dos/rocks!
 @setlocal EnableDelayedExpansion
 @echo off
 
@@ -31,6 +31,7 @@ goto :setup
     echo.
     echo Options:
     echo     -l, --list          List available boilerplates
+    echo     -s, --search expr   Search boilerplates for expr
     echo     -u, --upgrade       Upgrade list of available boilerplates
     echo     -h, --help          Display this help text
     echo     -v, --version       Display current script version
@@ -42,6 +43,7 @@ goto :setup
     set "basename=%~n0"
     set "baseext=%~x0"
     set "basepath=%~dp0"
+    set "basefile=%~dpnx0"
 
     set "__quiet="
     set "__verbose="
@@ -72,7 +74,7 @@ goto :setup
     rem The batch file's equivalent 'Sanity check' is that any
     rem options (-, --, and / for Windows) are executed then
     rem the batch file exits, ignoring any other commands, such
-    rem as Python
+    rem as Python, etc.
 
     if /i "%a%"=="/?" call :usage && endlocal && exit /B 0
     if /i "%a2%"=="-h" call :usage && endlocal && exit /B 0
@@ -93,12 +95,16 @@ goto :setup
     if /i "%a2%"=="-v" call :version && exit /B 0
     if /i "%a2%"=="/v" call :version && exit /B 0
 
-    if /i "%a2%"=="-l" call :list && exit /B 0
-    if /i "%a2%"=="/l" call :list && exit /B 0
+    if /i "%a2%"=="-l" call :list "%~2" && exit /B 0
+    if /i "%a2%"=="/l" call :list "%~2" && exit /B 0
+
+    if /i "%a2%"=="-s" call :search "%~2" && exit /B 0
+    if /i "%a2%"=="/s" call :search "%~2" && exit /B 0
 
     if /i "%a2%"=="-u" call :upgrade && exit /B 0
     if /i "%a2%"=="/u" call :upgrade && exit /B 0
 
+    if %errorlevel% NEQ 0 echo error %errorlevel% ocurred && exit /B 0
     call :dump "%a%"
 
     shift
@@ -111,6 +117,7 @@ goto :setup
     if defined __pause pause
 
 :end
+    set "cloned="
     @endlocal && exit /B 0
 
 
@@ -128,6 +135,7 @@ goto :setup
 
     git clone %opt% "%remote_repo%" "%local_repo%"
 
+    set "opt="
     goto :eof
 
 
@@ -136,13 +144,23 @@ goto :setup
         if defined __verbose echo init^(^)
     )
 
-    if not exist "%local_repo%\.git" call :clone "%~1"
+    if not exist "%local_repo%\.git" set "cloned=yes" && call :clone "%~1"
     goto :eof
 
 
 :list
     if not defined __quiet (
         if defined __verbose echo list^(^)
+    )
+
+    :: If the user sent an argument to `--list`,
+    :: then redirect to `:search`.
+    if not "%~1"=="" (
+        if not defined __quiet (
+            if defined __verbose echo redirecting to :search
+        )
+        call :search "%~1"
+        goto :eof
     )
 
     call :init
@@ -168,11 +186,54 @@ goto :setup
         if defined __verbose echo upgrade^(^)
     )
 
-    if not exist "%local_repo%\.git" call :clone && goto :eof
+    call :init
 
-    pushd "%local_repo%"
-    git pull origin master
-    popd
+    if not defined cloned (
+        pushd "%local_repo%"
+
+        call git pull origin master
+
+        rem if not defined __quiet (
+        rem     if defined __verbose (
+        rem         call git log --pretty=format:"%h: %d %s" --max-count=20
+        rem     )
+        rem )
+
+        popd
+    )
+
+    goto :eof
+
+
+:search
+    if not defined __quiet (
+        if defined __verbose echo search^(^)
+    )
+
+    call :init
+
+    set tmpfile=%TEMP%\gibo.%RANDOM%
+
+    if "%~1"=="" echo gibo: missing search expr.. && goto :eof
+
+    :: Execute the `--list` option and output
+    :: it to a temporary file.
+    call "%basefile%" -l > "%tmpfile%"
+
+    :: `findstr` options:
+    ::    /B   Matches pattern if at the beginning of a line.
+    ::    /E   Matches pattern if at the end of a line.
+    ::    /L   Uses search strings literally.
+    ::    /R   Uses search strings as regular expressions.
+    ::    /I   Specifies that the search is not to be case-sensitive.
+
+    :: Currently, I've set the search strings to be:
+    :: literal and *not* case-sensitive.
+    call findstr /L /I "%~1" "%tmpfile%"
+
+    :: Clean up the temporary file and envar.
+    if exist "%tmpfile%" del /Q /F "%tmpfile%"
+    set "tmpfile="
 
     goto :eof
 
