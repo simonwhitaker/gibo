@@ -1,8 +1,8 @@
 #!/bin/sh
-# 
+#
 # Script for easily accessing gitignore boilerplates from
 # https://github.com/github/gitignore
-# 
+#
 # Change log
 # v1.0 1-May-2012 First public release
 
@@ -12,7 +12,7 @@ current_repo_rev=$(git -C $local_repo rev-parse HEAD)
 remote_web_root=https://raw.github.com/github/gitignore/$current_repo_rev
 
 version() {
-    echo "$(basename $0) 1.0.3 by Simon Whitaker <simon@goosoftware.co.uk>"
+    echo "$(basename $0) 1.0.4 by Simon Whitaker <sw@netcetera.org>"
     echo "https://github.com/simonwhitaker/gibo"
 }
 
@@ -23,12 +23,12 @@ cat << EOF >&2
 Fetches gitignore boilerplates from github.com/github/gitignore
 
 Usage:
-    $(basename $0) [options] 
+    $(basename $0) [options]
     $(basename $0) [boilerplate boilerplate...]
 
 Example:
     $(basename $0) Python TextMate >> .gitignore
-    
+
 Options:
     -l, --list          List available boilerplates
     -u, --upgrade       Upgrade list of available boilerplates
@@ -54,13 +54,13 @@ init() {
 
 list() {
     init
-    
+
     echo "=== Languages ==="
     echo
     for path in $(ls "$local_repo"/*.gitignore | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
-    done
+    done | column
 
     echo
     echo "=== Global ==="
@@ -68,7 +68,7 @@ list() {
     for path in $(ls "$local_repo"/Global/*.gitignore | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
-    done
+    done | column
 }
 
 upgrade() {
@@ -82,10 +82,10 @@ upgrade() {
 
 dump() {
     init --silently
-    
+
     language_file="$local_repo/$1.gitignore"
     global_file="$local_repo/Global/$1.gitignore"
-    
+
     if [ -e "$language_file" ]; then
         echo "### $remote_web_root/$1.gitignore"
         echo
@@ -111,7 +111,7 @@ if [ $# -eq 0 ]; then
 fi
 
 # Sanity check command-line options. We want either
-# options like -l or arguments like Python, but not 
+# options like -l or arguments like Python, but not
 # both
 has_opts=0
 has_args=0
