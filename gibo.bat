@@ -50,7 +50,6 @@ goto :setup
     set "__pause="
 
     set "remote_repo=https://github.com/github/gitignore.git"
-    rem set "local_repo=%UserProfile%\.gitignore-boilerplates"
     set "local_repo=%AppData%\.gitignore-boilerplates"
 
     rem No args passed in, so show usage.
@@ -210,30 +209,23 @@ goto :setup
         if defined __verbose echo search^(^)
     )
 
-    call :init
-
-    set tmpfile=%TEMP%\gibo.%RANDOM%
-
     if "%~1"=="" echo gibo: missing search expr.. && goto :eof
 
-    :: Execute the `--list` option and output
-    :: it to a temporary file.
-    call "%basefile%" -l > "%tmpfile%"
+    call :init
 
-    :: `findstr` options:
-    ::    /B   Matches pattern if at the beginning of a line.
-    ::    /E   Matches pattern if at the end of a line.
-    ::    /L   Uses search strings literally.
-    ::    /R   Uses search strings as regular expressions.
-    ::    /I   Specifies that the search is not to be case-sensitive.
+    rem `findstr` options:
+    rem   /R         Uses search strings as regular expressions.
+    rem   /I         Specifies that the search is not to be case-sensitive.
+    rem   /N         Prints the line number before each line that matches.
+    rem   /P         Skip files with non-printable characters.
+    rem   /A:attr    Specifies color attribute with two hex digits. See "color /?"
+    rem   strings    Text to be searched for.
+    rem   [drive:][path]filename
+    rem              Specifies a file or files to search.
 
-    :: Currently, I've set the search strings to be:
-    :: literal and *not* case-sensitive.
-    call findstr /L /I "%~1" "%tmpfile%"
-
-    :: Clean up the temporary file and envar.
-    if exist "%tmpfile%" del /Q /F "%tmpfile%"
-    set "tmpfile="
+    pushd "%local_repo%"
+    call findstr /R /I /N /P /A:03 "%~1$" *.gitignore
+    popd
 
     goto :eof
 
