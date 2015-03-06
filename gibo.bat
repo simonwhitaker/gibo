@@ -6,14 +6,14 @@ rem Script for easily accessing gitignore boilerplates from
 rem https://github.com/github/gitignore
 rem
 rem Change log
-rem v1.0    1-May-2012  First public release
-rem v1.0.01 16-Aug-2014 Added batch file for DOS by Kody Brown ^<thewizard@wasatchwizard.com^>
+rem v1.0   1-May-2012  First public release
+rem v1.0.1 16-Aug-2014 Added batch file for DOS by Kody Brown ^<thewizard@wasatchwizard.com^>
+rem v1.0.5 06-Mar-2015 Added search functionality by Kody Brown ^<thewizard@wasatchwizard.com^>
 
 goto :setup
 
-
 :version
-    echo %basename% 1.0.4 by Simon Whitaker ^<sw@netcetera.org^>
+    echo %basename% 1.0.5 by Simon Whitaker ^<sw@netcetera.org^>
     echo https://github.com/simonwhitaker/gitignore-boilerplates
     goto :eof
 
@@ -37,7 +37,6 @@ goto :setup
     echo     -v, --version       Display current script version
 
     goto :eof
-
 
 :setup
     set "basename=%~n0"
@@ -137,7 +136,6 @@ goto :setup
     set "opt="
     goto :eof
 
-
 :init
     if not defined __quiet (
         if defined __verbose echo init^(^)
@@ -145,7 +143,6 @@ goto :setup
 
     if not exist "%local_repo%\.git" set "cloned=yes" && call :clone "%~1"
     goto :eof
-
 
 :list
     if not defined __quiet (
@@ -179,6 +176,32 @@ goto :setup
 
     goto :eof
 
+:search
+    if not defined __quiet (
+        if defined __verbose echo search^(^)
+    )
+
+    if "%~1"=="" echo gibo: missing search expr.. && goto :eof
+
+    call :init
+
+    rem `findstr` options:
+    rem   /R         Uses search strings as regular expressions.
+    rem   /S         Searches for matching files in the current directory and all
+    rem              subdirectories.
+    rem   /I         Specifies that the search is not to be case-sensitive.
+    rem   /N         Prints the line number before each line that matches.
+    rem   /P         Skip files with non-printable characters.
+    rem   /A:attr    Specifies color attribute with two hex digits. See "color /?"
+    rem   strings    Text to be searched for.
+    rem   [drive:][path]filename
+    rem              Specifies a file or files to search.
+
+    pushd "%local_repo%"
+    call findstr /S /R /I /N /P /A:03 "%~1$" *.gitignore
+    popd
+
+    goto :eof
 
 :upgrade
     if not defined __quiet (
@@ -202,33 +225,6 @@ goto :setup
     )
 
     goto :eof
-
-
-:search
-    if not defined __quiet (
-        if defined __verbose echo search^(^)
-    )
-
-    if "%~1"=="" echo gibo: missing search expr.. && goto :eof
-
-    call :init
-
-    rem `findstr` options:
-    rem   /R         Uses search strings as regular expressions.
-    rem   /I         Specifies that the search is not to be case-sensitive.
-    rem   /N         Prints the line number before each line that matches.
-    rem   /P         Skip files with non-printable characters.
-    rem   /A:attr    Specifies color attribute with two hex digits. See "color /?"
-    rem   strings    Text to be searched for.
-    rem   [drive:][path]filename
-    rem              Specifies a file or files to search.
-
-    pushd "%local_repo%"
-    call findstr /R /I /N /P /A:03 "%~1$" *.gitignore
-    popd
-
-    goto :eof
-
 
 :dump
     if not defined __quiet (
