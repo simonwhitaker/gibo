@@ -93,6 +93,15 @@ Alternatively, you can use `gibo-completion.zsh` as an
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin
 by following [these instructions](https://github.com/simonwhitaker/gitignore-boilerplates/wiki/Using-gibo-as-an-ohmyzsh-plugin).
 
+## Use gibo to generate .hgignore files
+
+The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax.
+This means that you can use gibo to generate .hgignore files, as long as the
+.hgignore files use the `glob` syntax:
+
+    echo 'syntax: glob' > .hgignore
+    $ gibo Python TextMate >> .hgignore
+
 ## Credits
 
 gibo was written by Simon Whitaker ([@s1mn](http://twitter.com/s1mn))
