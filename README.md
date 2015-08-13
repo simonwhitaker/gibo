@@ -44,7 +44,7 @@ A great benefit to using scoop, is that it provides an easy way to update its pa
     scoop update
     scoop update gibo
 
-**git installion**
+**git installation**
 
 You can download the whole `gibo` repo directly from GitHub:
 
@@ -54,7 +54,7 @@ You can download the whole `gibo` repo directly from GitHub:
 
 Then add the full gibo directory (`C:\Users\<Your User>\bin\gibo`) to your system's PATH environment variable.
 
-**manual installion**
+**manual installation**
 
 To manually install only the `gibo.bat` file, download it to your computer and save it to any directory that is in your PATH.
 
