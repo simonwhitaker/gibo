@@ -44,7 +44,7 @@ A great benefit to using scoop, is that it provides an easy way to update its pa
     scoop update
     scoop update gibo
 
-**git installion**
+**git installation**
 
 You can download the whole `gibo` repo directly from GitHub:
 
@@ -54,7 +54,7 @@ You can download the whole `gibo` repo directly from GitHub:
 
 Then add the full gibo directory (`C:\Users\<Your User>\bin\gibo`) to your system's PATH environment variable.
 
-**manual installion**
+**manual installation**
 
 To manually install only the `gibo.bat` file, download it to your computer and save it to any directory that is in your PATH.
 
@@ -92,6 +92,15 @@ and put the following in your .zshrc:
 Alternatively, you can use `gibo-completion.zsh` as an
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin
 by following [these instructions](https://github.com/simonwhitaker/gitignore-boilerplates/wiki/Using-gibo-as-an-ohmyzsh-plugin).
+
+## Use gibo to generate .hgignore files
+
+The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax.
+This means that you can use gibo to generate .hgignore files, as long as the
+.hgignore files use the `glob` syntax:
+
+    echo 'syntax: glob' > .hgignore
+    $ gibo Python TextMate >> .hgignore
 
 ## Credits
 
