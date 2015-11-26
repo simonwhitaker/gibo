@@ -7,7 +7,7 @@
 # v1.0 1-May-2012 First public release
 
 remote_repo=https://github.com/github/gitignore.git
-local_repo=$HOME/.gitignore-boilerplates
+local_repo=${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"}
 current_repo_rev=$(git -C $local_repo rev-parse HEAD)
 remote_web_root=https://raw.github.com/github/gitignore/$current_repo_rev
 
