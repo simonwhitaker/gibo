@@ -49,7 +49,8 @@ goto :setup
     set "__pause="
 
     set "remote_repo=https://github.com/github/gitignore.git"
-    set "local_repo=%AppData%\.gitignore-boilerplates"
+    if defined GIBO_BOILERPLATES set "local_repo=%GIBO_BOILERPLATES%"
+    if not defined GIBO_BOILERPLATES set "local_repo=%AppData%\.gitignore-boilerplates"
 
     rem No args passed in, so show usage.
     if "%~1"=="" call :usage && exit /B 0
