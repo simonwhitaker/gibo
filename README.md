@@ -62,9 +62,9 @@ Right-click [this link](https://raw.githubusercontent.com/simonwhitaker/gibo/mas
 
 A good directory to put the file is `C:\Users\<Your User>\bin` and add that directory to your system's PATH environment variable. Where ever you put it, make sure the batch file is accessible via `where gibo`.
 
-## Tab completion in bash and zsh
+## Tab completion in bash, zsh and fish
 
-bash and zsh users can enjoy the deluxe gibo experience by enabling tab
+bash, zsh and fish users can enjoy the deluxe gibo experience by enabling tab
 completion of available boilerplate names.
 
 Sorry, there is no tab completion support in Windows.
@@ -92,6 +92,10 @@ and put the following in your .zshrc:
 Alternatively, you can use `gibo-completion.zsh` as an
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin
 by following [these instructions](https://github.com/simonwhitaker/gitignore-boilerplates/wiki/Using-gibo-as-an-ohmyzsh-plugin).
+
+### fish instructions
+
+Copy `gibo-completion.fish` to ~/.config/fish/completions/ 
 
 ## Use gibo to generate .hgignore files
 
