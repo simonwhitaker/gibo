@@ -84,10 +84,10 @@ following in your .bashrc:
 
 ### zsh instructions
 
-Copy `gibo-completion.zsh` somewhere (e.g. ~/.gibo-completion.zsh)
+Copy `gibo-completion.zsh` somewhere (e.g. ~/.zsh/_gibo)
 and put the following in your .zshrc:
 
-    source ~/.gibo-completion.zsh
+    fpath=(~/.zsh $fpath)
 
 Alternatively, you can use `gibo-completion.zsh` as an
 [oh-my-zsh](https://github.com/robbyrussell/oh-my-zsh) plugin

@@ -1,4 +1,4 @@
-#!/zsh
+#compdef gibo
 #
 # Zsh completion for gibo
 #
@@ -12,10 +12,10 @@
 #
 #     autoload -U compinit && compinit
 #
-# Then copy this file somewhere (e.g. ~/.gibo-completion.zsh) and put the
+# Then copy this file somewhere (e.g. ~/.zsh/_gibo) and put the
 # following in your .zshrc:
 #
-#     source ~/.gibo-completion.zsh
+#     fpath=(~/.zsh $fpath)
 #
 # CREDITS
 #
@@ -23,9 +23,16 @@
 
 _gibo()
 {
-    local_repo=${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"}
+    local local_repo=${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"}
+    local -a boilerplates
     if [ -e "$local_repo" ]; then
-        compadd -M 'm:{[:lower:]}={[:upper:]}' $( find "$local_repo" -name "*.gitignore" -exec basename \{\} .gitignore \; )
+        boilerplates=($local_repo/**/*.gitignore(:r:t))
     fi
+
+    _arguments \
+        {-l,--list}'[List available boilerplates]' \
+        {-u,--upgrade}'[Upgrade list of available boilerplates]' \
+        {-h,--help}'[Display this help text]' \
+        {-v,--version}'[Display current script version]' \
+        "*:boilerplate:($boilerplates)"
 }
-compdef _gibo gibo
