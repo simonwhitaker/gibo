@@ -12,7 +12,7 @@ current_repo_rev=$(git -C $local_repo rev-parse HEAD)
 remote_web_root=https://raw.github.com/github/gitignore/$current_repo_rev
 
 version() {
-    echo "$(basename $0) 1.0.4 by Simon Whitaker <sw@netcetera.org>"
+    echo "$(basename $0) 1.0.5 by Simon Whitaker <sw@netcetera.org>"
     echo "https://github.com/simonwhitaker/gibo"
 }
 
