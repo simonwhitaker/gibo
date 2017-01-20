@@ -8,7 +8,7 @@
 
 remote_repo=https://github.com/github/gitignore.git
 local_repo=${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"}
-current_repo_rev=$(git -C $local_repo rev-parse HEAD)
+current_repo_rev=$(cd $local_repo; git rev-parse HEAD)
 remote_web_root=https://raw.github.com/github/gitignore/$current_repo_rev
 
 version() {
