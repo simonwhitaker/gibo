@@ -8,6 +8,9 @@
 
 For additional usage instructions, run `gibo` without arguments.
 
+## Requirement
+git: 1.8.5 or more
+
 ## Installation
 
 ### Installation on OS X using [Homebrew](http://mxcl.github.com/homebrew/)
