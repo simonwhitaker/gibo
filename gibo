@@ -5,6 +5,7 @@
 #
 # Change log
 # v1.0 1-May-2012 First public release
+# v1.0.5-Mar-2015 Added search functionality by Kody Brown ^<thewizard@wasatchwizard.com^>
 
 remote_repo=https://github.com/github/gitignore.git
 local_repo=${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"}
@@ -31,6 +32,7 @@ Example:
 
 Options:
     -l, --list          List available boilerplates
+    -s, --search expr   Search boilerplates for expr
     -u, --upgrade       Upgrade list of available boilerplates
     -h, --help          Display this help text
     -v, --version       Display current script version
@@ -69,6 +71,13 @@ list() {
         filename=$(basename $path)
         echo "${filename%.*}"
     done | column
+}
+
+search() {
+    init --silently
+
+    cd "$local_repo"
+    grep -rHniE -C 0 "$1" .
 }
 
 upgrade() {

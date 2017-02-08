@@ -1,4 +1,4 @@
-@rem #!/dos/rocks!
+@::!/dos/rocks!
 @setlocal EnableDelayedExpansion
 @echo off
 
@@ -6,11 +6,11 @@ rem Script for easily accessing gitignore boilerplates from
 rem https://github.com/github/gitignore
 rem
 rem Change log
-rem v1.0    1-May-2012  First public release
-rem v1.0.01 16-Aug-2014 Added batch file for DOS by Kody Brown ^<thewizard@wasatchwizard.com^>
+rem v1.0   1-May-2012  First public release
+rem v1.0.1 16-Aug-2014 Added batch file for DOS by Kody Brown ^<thewizard@wasatchwizard.com^>
+rem v1.0.5 06-Mar-2015 Added search functionality by Kody Brown ^<thewizard@wasatchwizard.com^>
 
 goto :setup
-
 
 :version
     echo %basename% 1.0.5 by Simon Whitaker ^<sw@netcetera.org^>
@@ -31,25 +31,26 @@ goto :setup
     echo.
     echo Options:
     echo     -l, --list          List available boilerplates
+    echo     -s, --search expr   Search boilerplates for expr
     echo     -u, --upgrade       Upgrade list of available boilerplates
     echo     -h, --help          Display this help text
     echo     -v, --version       Display current script version
 
     goto :eof
 
-
 :setup
     set "basename=%~n0"
     set "baseext=%~x0"
     set "basepath=%~dp0"
+    set "basefile=%~dpnx0"
 
     set "__quiet="
     set "__verbose="
     set "__pause="
 
     set "remote_repo=https://github.com/github/gitignore.git"
-    rem set "local_repo=%UserProfile%\.gitignore-boilerplates"
-    set "local_repo=%AppData%\.gitignore-boilerplates"
+    if defined GIBO_BOILERPLATES set "local_repo=%GIBO_BOILERPLATES%"
+    if not defined GIBO_BOILERPLATES set "local_repo=%AppData%\.gitignore-boilerplates"
 
     rem No args passed in, so show usage.
     if "%~1"=="" call :usage && exit /B 0
@@ -72,7 +73,7 @@ goto :setup
     rem The batch file's equivalent 'Sanity check' is that any
     rem options (-, --, and / for Windows) are executed then
     rem the batch file exits, ignoring any other commands, such
-    rem as Python
+    rem as Python, etc.
 
     if /i "%a%"=="/?" call :usage && endlocal && exit /B 0
     if /i "%a2%"=="-h" call :usage && endlocal && exit /B 0
@@ -93,12 +94,16 @@ goto :setup
     if /i "%a2%"=="-v" call :version && exit /B 0
     if /i "%a2%"=="/v" call :version && exit /B 0
 
-    if /i "%a2%"=="-l" call :list && exit /B 0
-    if /i "%a2%"=="/l" call :list && exit /B 0
+    if /i "%a2%"=="-l" call :list "%~2" && exit /B 0
+    if /i "%a2%"=="/l" call :list "%~2" && exit /B 0
+
+    if /i "%a2%"=="-s" call :search "%~2" && exit /B 0
+    if /i "%a2%"=="/s" call :search "%~2" && exit /B 0
 
     if /i "%a2%"=="-u" call :upgrade && exit /B 0
     if /i "%a2%"=="/u" call :upgrade && exit /B 0
 
+    if %errorlevel% NEQ 0 echo error %errorlevel% ocurred && exit /B 0
     call :dump "%a%"
 
     shift
@@ -111,6 +116,7 @@ goto :setup
     if defined __pause pause
 
 :end
+    set "cloned="
     @endlocal && exit /B 0
 
 
@@ -128,21 +134,30 @@ goto :setup
 
     git clone %opt% "%remote_repo%" "%local_repo%"
 
+    set "opt="
     goto :eof
-
 
 :init
     if not defined __quiet (
         if defined __verbose echo init^(^)
     )
 
-    if not exist "%local_repo%\.git" call :clone "%~1"
+    if not exist "%local_repo%\.git" set "cloned=yes" && call :clone "%~1"
     goto :eof
-
 
 :list
     if not defined __quiet (
         if defined __verbose echo list^(^)
+    )
+
+    :: If the user sent an argument to `--list`,
+    :: then redirect to `:search`.
+    if not "%~1"=="" (
+        if not defined __quiet (
+            if defined __verbose echo redirecting to :search
+        )
+        call :search "%~1"
+        goto :eof
     )
 
     call :init
@@ -162,20 +177,55 @@ goto :setup
 
     goto :eof
 
+:search
+    if not defined __quiet (
+        if defined __verbose echo search^(^)
+    )
+
+    if "%~1"=="" echo gibo: missing search expr.. && goto :eof
+
+    call :init
+
+    rem `findstr` options:
+    rem   /R         Uses search strings as regular expressions.
+    rem   /S         Searches for matching files in the current directory and all
+    rem              subdirectories.
+    rem   /I         Specifies that the search is not to be case-sensitive.
+    rem   /N         Prints the line number before each line that matches.
+    rem   /P         Skip files with non-printable characters.
+    rem   /A:attr    Specifies color attribute with two hex digits. See "color /?"
+    rem   strings    Text to be searched for.
+    rem   [drive:][path]filename
+    rem              Specifies a file or files to search.
+
+    pushd "%local_repo%"
+    call findstr /S /R /I /N /P /A:03 "%~1$" *.gitignore
+    popd
+
+    goto :eof
 
 :upgrade
     if not defined __quiet (
         if defined __verbose echo upgrade^(^)
     )
 
-    if not exist "%local_repo%\.git" call :clone && goto :eof
+    call :init
 
-    pushd "%local_repo%"
-    git pull origin master
-    popd
+    if not defined cloned (
+        pushd "%local_repo%"
+
+        call git pull origin master
+
+        rem if not defined __quiet (
+        rem     if defined __verbose (
+        rem         call git log --pretty=format:"%h: %d %s" --max-count=20
+        rem     )
+        rem )
+
+        popd
+    )
 
     goto :eof
-
 
 :dump
     if not defined __quiet (
