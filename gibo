@@ -76,7 +76,7 @@ upgrade() {
         clone
     else
         cd "$local_repo"
-        git pull origin master
+        git pull --ff origin master
     fi
 }
 
