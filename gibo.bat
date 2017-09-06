@@ -171,7 +171,7 @@ goto :setup
     if not exist "%local_repo%\.git" call :clone && goto :eof
 
     pushd "%local_repo%"
-    git pull origin master
+    git pull --ff origin master
     popd
 
     goto :eof
