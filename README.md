@@ -62,6 +62,18 @@ Right-click [this link](https://raw.githubusercontent.com/simonwhitaker/gibo/mas
 
 A good directory to put the file is `C:\Users\<Your User>\bin` and add that directory to your system's PATH environment variable. Where ever you put it, make sure the batch file is accessible via `where gibo`.
 
+### Installation on Docker
+
+```sh
+$ docker build . -t simonwhitaker/gibo
+```
+
+#### Running on Docker
+
+```sh
+$ docker run simonwhitaker/gibo --list
+```
+
 ## Tab completion in bash, zsh and fish
 
 bash, zsh and fish users can enjoy the deluxe gibo experience by enabling tab
