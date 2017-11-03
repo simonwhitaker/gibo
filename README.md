@@ -64,15 +64,9 @@ A good directory to put the file is `C:\Users\<Your User>\bin` and add that dire
 
 ### Installation on Docker
 
-```sh
-$ docker build . -t simonwhitaker/gibo
-```
+Just type the following command.
 
-#### Running on Docker
-
-```sh
-$ docker run simonwhitaker/gibo --list
-```
+    $ docker run --rm simonwhitaker/gibo
 
 ## Tab completion in bash, zsh and fish
 
