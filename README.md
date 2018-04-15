@@ -101,7 +101,7 @@ by following [these instructions](https://github.com/simonwhitaker/gitignore-boi
 
 ### fish instructions
 
-Copy `gibo-completion.fish` to ~/.config/fish/completions/ 
+Copy `gibo.fish` to ~/.config/fish/completions/ 
 
 ## Use gibo to generate .hgignore files
 
