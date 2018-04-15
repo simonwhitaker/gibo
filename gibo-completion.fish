@@ -5,9 +5,7 @@
 # First install gibo from
 # https://github.com/simonwhitaker/gitignore-boilerplates
 #
-# Then copy this file to the folder ~/.config/fish/completions/ .
-# In case the folder doesn't exist create it with
-#   mkdir ~/.config/fish/completions
+# Then copy this file to ~/.config/fish/completions/gibo.fish
 #
 # CREDITS
 #
@@ -22,4 +20,4 @@ function gibocompletionlist
   echo $completions
 end
 
-complete -c gibo -a (gibocompletionlist)
+complete -c gibo -f -a (gibocompletionlist)
