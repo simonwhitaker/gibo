@@ -5,7 +5,7 @@
 # First install gibo from
 # https://github.com/simonwhitaker/gitignore-boilerplates
 #
-# Then copy this file to ~/.config/fish/completions/gibo.fish
+# Then copy this file to ~/.config/fish/completions
 #
 # CREDITS
 #
