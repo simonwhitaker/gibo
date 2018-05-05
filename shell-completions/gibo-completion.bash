@@ -1,5 +1,3 @@
-#!bash
-#
 # Bash completion for gibo
 #
 # INSTALLATION
