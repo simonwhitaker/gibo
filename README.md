@@ -4,7 +4,7 @@
 
 ## Typical usage
 
-    $ gibo Python TextMate >> .gitignore
+    $ gibo dump Python TextMate >> .gitignore
 
 For additional usage instructions, run `gibo` without arguments.
 
@@ -32,12 +32,12 @@ It provides packages for main script and bash / zsh completions:
 Just download `gibo` and put it somewhere on your $PATH. Then:
 
     chmod +x /path/to/gibo   # Make gibo executable
-    gibo -u                  # Initialise gibo
+    gibo upgrade             # Initialise gibo
 
 You can automate this with the following one-liner (assuming ~/bin is on your $PATH).
 
     curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo \
-        -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
+        -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo upgrade
 
 ### Installation on Windows
 
@@ -119,7 +119,7 @@ This means that you can use gibo to generate .hgignore files, as long as the
 .hgignore files use the `glob` syntax:
 
     echo 'syntax: glob' > .hgignore
-    $ gibo Python TextMate >> .hgignore
+    $ gibo dump Python TextMate >> .hgignore
 
 ## Credits
 
