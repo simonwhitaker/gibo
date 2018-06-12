@@ -11,20 +11,25 @@
 #
 # Written by Sebastian Schulz <https://github.com/yilazius>
 
-function __fish_using_command
+function __gibo_wants_subcommand
     set cmd (commandline -opc)
-    if [ (count $cmd) -eq (count $argv) ]
-        for i in (seq (count $argv))
-            if [ $cmd[$i] != $argv[$i] ]
-                return 1
-            end
-        end
+    if test (count $cmd) -eq 1
         return 0
     end
     return 1
 end
 
-function gibocompletionlist
+function __gibo_using_subcommand
+    set cmd (commandline -opc)
+    set subcommand $argv[1]
+    if test (count $cmd) -ge 2
+        and test $cmd[2] = $subcommand
+        return 0
+    end
+    return 1
+end
+
+function __gibo_completion_list
   set gitignores (ls ~/.gitignore-boilerplates/**.gitignore)
   set completions
   for val in $gitignores
@@ -33,9 +38,9 @@ function gibocompletionlist
   echo $completions
 end
 
-complete -c gibo -n "__fish_using_command gibo" -f -a "dump" -d 'Dump one or more boilerplates to STDOUT'
-complete -c gibo -n "__fish_using_command gibo" -f -a "help" -d 'Show help information'
-complete -c gibo -n "__fish_using_command gibo" -f -a "list" -d 'Show the list of available boilerplates'
-complete -c gibo -n "__fish_using_command gibo" -f -a "update" -d 'Update the list of available boilerplates'
-complete -c gibo -n "__fish_using_command gibo" -f -a "version" -d 'Show the current version of gibo installed'
-complete -c gibo -n "__fish_using_command gibo dump" -f -a (gibocompletionlist)
+complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "dump" -d 'Dump one or more boilerplates to STDOUT'
+complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "help" -d 'Show help information'
+complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "list" -d 'Show the list of available boilerplates'
+complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "update" -d 'Update the list of available boilerplates'
+complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "version" -d 'Show the current version of gibo installed'
+complete -c gibo -n "__gibo_using_subcommand dump" -f -a (__gibo_completion_list)
