@@ -27,7 +27,7 @@ Example:
 
 Commands:
     list            List available boilerplates
-    upgrade         Upgrade list of available boilerplates
+    update          Update list of available boilerplates
     help            Display this help text
     version         Display current script version
     dump BOILERPLATE...
@@ -69,7 +69,7 @@ list() {
     done | column
 }
 
-upgrade() {
+update() {
     if [ ! -e "$local_repo/.git" ]; then
         clone
     else
@@ -120,8 +120,8 @@ while [ $# -gt 0 ]; do
             list
             exit 0
             ;;
-        upgrade )
-            upgrade
+        update )
+            update
             exit 0
             ;;
         help )
