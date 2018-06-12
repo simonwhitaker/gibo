@@ -9,7 +9,7 @@
 #
 # CREDITS
 #
-# Written by Sebastian Schulz <https://github.com/yilazius>
+# Initial version written by Sebastian Schulz <https://github.com/yilazius>
 
 function __gibo_wants_subcommand
     set cmd (commandline -opc)
@@ -38,9 +38,9 @@ function __gibo_completion_list
   echo $completions
 end
 
-complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "dump" -d 'Dump one or more boilerplates to STDOUT'
-complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "help" -d 'Show help information'
-complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "list" -d 'Show the list of available boilerplates'
-complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "update" -d 'Update the list of available boilerplates'
-complete -c gibo -n "__gibo_wants_subcommand gibo" -f -a "version" -d 'Show the current version of gibo installed'
+complete -c gibo -n "__gibo_wants_subcommand" -f -a "dump" -d 'Dump one or more boilerplates to STDOUT'
+complete -c gibo -n "__gibo_wants_subcommand" -f -a "help" -d 'Show help information'
+complete -c gibo -n "__gibo_wants_subcommand" -f -a "list" -d 'Show the list of available boilerplates'
+complete -c gibo -n "__gibo_wants_subcommand" -f -a "update" -d 'Update the list of available boilerplates'
+complete -c gibo -n "__gibo_wants_subcommand" -f -a "version" -d 'Show the current version of gibo installed'
 complete -c gibo -n "__gibo_using_subcommand dump" -f -a (__gibo_completion_list)
