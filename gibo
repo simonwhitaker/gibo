@@ -129,7 +129,12 @@ while [ $# -gt 0 ]; do
             exit 0
             ;;
         dump )
-            should_dump=1
+            if [ $# -gt 1 ]; then
+                should_dump=1
+            else
+                usage
+                exit 1
+            fi
             ;;
         * ) # default case
             if [ $should_dump -eq 1 ]; then
