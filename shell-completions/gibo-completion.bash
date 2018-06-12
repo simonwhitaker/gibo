@@ -24,10 +24,26 @@
 
 _gibo()
 {
-    local cur opts
-    opts=$( find ${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"} -name "*.gitignore" -exec basename \{\} .gitignore \; )
+    local cur prev opts
     cur="${COMP_WORDS[COMP_CWORD]}"
 
-    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+    case $COMP_CWORD in
+        1)
+            COMPREPLY=($(compgen -W "dump help list update version" -- ${cur}))
+            ;;
+        *)
+            subcommand="${COMP_WORDS[1]}"
+            case $subcommand in
+                dump)
+                    opts=$( find ${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"} -name "*.gitignore" -exec basename \{\} .gitignore \; )
+                    COMPREPLY=( $(compgen -W "${opts}" -- ${cur}) )
+                    ;;
+                *)
+                    COMPREPLY=()
+                    ;;
+            esac
+            ;;
+    esac
 }
+
 complete -F _gibo gibo
