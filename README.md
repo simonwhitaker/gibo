@@ -32,12 +32,12 @@ It provides packages for main script and bash / zsh completions:
 Just download `gibo` and put it somewhere on your $PATH. Then:
 
     chmod +x /path/to/gibo   # Make gibo executable
-    gibo upgrade             # Initialise gibo
+    gibo update              # Initialise gibo
 
 You can automate this with the following one-liner (assuming ~/bin is on your $PATH).
 
     curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo \
-        -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo upgrade
+        -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo update
 
 ### Installation on Windows
 
