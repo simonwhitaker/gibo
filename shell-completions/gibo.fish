@@ -30,12 +30,11 @@ function __gibo_using_subcommand
 end
 
 function __gibo_completion_list
-  set gitignores (ls ~/.gitignore-boilerplates/**.gitignore)
-  set completions
-  for val in $gitignores
-    set completions $completions (basename $val | cut -d '.' -f1)
-  end
-  echo $completions
+    set gibo_home "$HOME/.gitignore-boilerplates"
+    if set -q GIBO_BOILERPLATES
+        set gibo_home $GIBO_BOILERPLATES
+    end
+    find "$gibo_home" -name "*.gitignore" -exec basename \{\} .gitignore \;
 end
 
 complete -c gibo -n "__gibo_wants_subcommand" -f -a "dump" -d 'Dump one or more boilerplates to STDOUT'
@@ -43,4 +42,4 @@ complete -c gibo -n "__gibo_wants_subcommand" -f -a "help" -d 'Show help informa
 complete -c gibo -n "__gibo_wants_subcommand" -f -a "list" -d 'Show the list of available boilerplates'
 complete -c gibo -n "__gibo_wants_subcommand" -f -a "update" -d 'Update the list of available boilerplates'
 complete -c gibo -n "__gibo_wants_subcommand" -f -a "version" -d 'Show the current version of gibo installed'
-complete -c gibo -n "__gibo_using_subcommand dump" -f -a (__gibo_completion_list)
+complete -c gibo -n "__gibo_using_subcommand dump" -f -a '(__gibo_completion_list)'
