@@ -4,7 +4,7 @@
 
 ## Typical usage
 
-    $ gibo dump Python TextMate >> .gitignore
+    $ gibo dump Swift Xcode >> .gitignore
 
 For additional usage instructions, run `gibo` without arguments.
 
@@ -22,7 +22,6 @@ For additional usage instructions, run `gibo` without arguments.
 
 `gibo` is avaiable as a [COPR repository](https://copr.fedorainfracloud.org/).
 It provides packages for main script and bash / zsh completions:
-
 
     dnf copr enable saschpe/gibo
     dnf install gibo gibo-bash-completion gibo-zsh-completion
