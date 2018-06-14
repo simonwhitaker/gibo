@@ -6,7 +6,7 @@
 
     $ gibo dump Swift Xcode >> .gitignore
 
-For additional usage instructions, run `gibo` without arguments.
+For additional usage instructions, run `gibo help`.
 
 ## Installation
 
