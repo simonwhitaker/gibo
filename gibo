@@ -9,7 +9,7 @@ current_repo_rev=$(cd $local_repo 2>/dev/null && git rev-parse HEAD)
 remote_web_root=https://raw.github.com/github/gitignore/$current_repo_rev
 
 version() {
-    echo "$(basename $0) 2.0 by Simon Whitaker <sw@netcetera.org>"
+    echo "$(basename $0) 2.1.0 by Simon Whitaker <sw@netcetera.org>"
     echo "https://github.com/simonwhitaker/gibo"
 }
 
@@ -17,7 +17,7 @@ usage() {
     version
 cat << EOF >&2
 
-Fetches gitignore boilerplates from github.com/github/gitignore
+Fetches gitignore boilerplates from https://github.com/github/gitignore
 
 Usage:
     $(basename $0) [command]
@@ -26,12 +26,12 @@ Example:
     $(basename $0) dump Swift Xcode >> .gitignore
 
 Commands:
-    list            List available boilerplates
-    update          Update list of available boilerplates
-    help            Display this help text
-    version         Display current script version
-    dump BOILERPLATE...
-                    Write boilerplate(s) to STDOUT
+    dump BOILERPLATE...   Write boilerplate(s) to STDOUT
+    help                  Display this help text
+    list                  List available boilerplates
+    search STR            Search for boilerplates with STR in the name
+    update                Update list of available boilerplates
+    version               Display current script version
 EOF
 }
 
@@ -67,6 +67,13 @@ list() {
         filename=$(basename $path)
         echo "${filename%.*}"
     done | column
+}
+
+search() {
+    init
+    for filename in $(find "$local_repo" -iname "*$**.gitignore" -exec basename \{\} .gitignore \; | sort); do
+        echo $filename
+    done
 }
 
 update() {
@@ -131,6 +138,16 @@ while [ $# -gt 0 ]; do
         dump )
             if [ $# -gt 1 ]; then
                 should_dump=1
+            else
+                usage
+                exit 1
+            fi
+            ;;
+        search )
+            if [ $# -gt 1 ]; then
+                shift
+                search $*
+                exit 0
             else
                 usage
                 exit 1
