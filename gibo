@@ -53,20 +53,25 @@ init() {
 list() {
     init
 
-    echo "=== Languages ==="
-    echo
+    if [ -t 1 ]; then
+        shape='column'
+    else
+        shape='cat'
+    fi
+
+    [ -t 1 ] && printf "=== Languages ===\n\n"
+
     for path in $(ls "$local_repo"/*.gitignore | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
-    done | column
+    done | eval ${shape}
 
-    echo
-    echo "=== Global ==="
-    echo
+    [ -t 1 ] && printf "\n=== Global ===\n\n"
+
     for path in $(ls "$local_repo"/Global/*.gitignore | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
-    done | column
+    done | eval ${shape}
 }
 
 search() {
