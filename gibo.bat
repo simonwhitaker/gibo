@@ -15,7 +15,7 @@ goto :setup
 
 
 :version
-    echo %basename% 2.0.0 by Simon Whitaker ^<sw@netcetera.org^>
+    echo %basename% 2.1.2 by Simon Whitaker ^<sw@netcetera.org^>
     echo https://github.com/simonwhitaker/gitignore-boilerplates
     goto :eof
 
