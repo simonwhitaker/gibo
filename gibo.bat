@@ -167,7 +167,7 @@ goto :setup
     if not defined __cloned (
         echo updating..
         pushd "%local_repo%"
-        git pull -q --autostash --ff origin master
+        git pull -q --ff origin master
         popd
     )
 
