@@ -25,17 +25,17 @@ goto :setup
     echo Fetches gitignore boilerplates from github.com/github/gitignore
     echo.
     echo Usage:
-    echo     %basename% [options]
-    echo     %basename% [boilerplate boilerplate...]
+    echo     %basename% [command]
     echo.
     echo Example:
-    echo     %basename% Python TextMate ^>^> .gitignore
+    echo     %basename% dump Python NotepadPP ^>^> .gitignore
     echo.
     echo Options:
-    echo     list [expr]   List available boilerplates
+    echo     dump expr...  Dump boilerplate(s) to stdout
+    echo     help          Display this help text
+    echo     list          List available boilerplates
     echo     search expr   Search inside boilerplates for expr
     echo     update        Update list of available boilerplates
-    echo     help          Display this help text
     echo     version       Display current script version
 
     goto :eof
