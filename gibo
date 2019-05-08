@@ -61,14 +61,7 @@ list() {
 
     [ -t 1 ] && printf "=== Languages ===\n\n"
 
-    for path in $(ls "$local_repo"/*.gitignore | sort -f); do
-        filename=$(basename $path)
-        echo "${filename%.*}"
-    done | eval ${shape}
-
-    [ -t 1 ] && printf "\n=== Global ===\n\n"
-
-    for path in $(ls "$local_repo"/Global/*.gitignore | sort -f); do
+    for path in $(find "$local_repo" -name '*.gitignore' | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
     done | eval ${shape}
@@ -93,19 +86,12 @@ update() {
 dump() {
     init --silently
 
-    language_file=$(find "$local_repo" -maxdepth 1 -iname "$1.gitignore" | head -n 1)
-    global_file=$(find "$local_repo/Global" -maxdepth 1 -iname "$1.gitignore" | head -n 1)
+    language_file=$(find "$local_repo" -iname "$1.gitignore" | head -n 1)
 
     if [ -n "$language_file" ]; then
-        echo "### $remote_web_root/$(basename $language_file)"
+        echo "### $remote_web_root${language_file/$local_repo/}"
         echo
         cat "$language_file"
-        echo
-        echo
-    elif [ -n "$global_file" ]; then
-        echo "### $remote_web_root/Global/$(basename $global_file)"
-        echo
-        cat "$global_file"
         echo
         echo
     else
