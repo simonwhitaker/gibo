@@ -29,6 +29,7 @@ Commands:
     dump BOILERPLATE...   Write boilerplate(s) to STDOUT
     help                  Display this help text
     list                  List available boilerplates
+    root                  Show the directory where gibo stores its boilerplates
     search STR            Search for boilerplates with STR in the name
     update                Update list of available boilerplates
     version               Display current script version
@@ -63,6 +64,10 @@ list() {
         filename=$(basename $path)
         echo "${filename%.*}"
     done | eval ${shape}
+}
+
+root() {
+    echo $local_repo
 }
 
 search() {
@@ -114,6 +119,10 @@ while [ $# -gt 0 ]; do
             ;;
         list )
             list
+            exit 0
+            ;;
+        root )
+            root
             exit 0
             ;;
         update )
