@@ -59,8 +59,6 @@ list() {
         shape='cat'
     fi
 
-    [ -t 1 ] && printf "=== Languages ===\n\n"
-
     for path in $(find "$local_repo" -name '*.gitignore' | sort -f); do
         filename=$(basename $path)
         echo "${filename%.*}"
