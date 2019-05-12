@@ -39,6 +39,8 @@ function __gibo_completion_list
 end
 
 complete -c gibo -n "__gibo_wants_subcommand" -f -a "dump" -d 'Dump one or more boilerplates to STDOUT'
+complete -c gibo -n "__gibo_wants_subcommand" -f -a "search" -d 'Search for boilerplates'
+complete -c gibo -n "__gibo_wants_subcommand" -f -a "root" -d 'Show the directory where gibo stores its boilerplates'
 complete -c gibo -n "__gibo_wants_subcommand" -f -a "help" -d 'Show help information'
 complete -c gibo -n "__gibo_wants_subcommand" -f -a "list" -d 'Show the list of available boilerplates'
 complete -c gibo -n "__gibo_wants_subcommand" -f -a "update" -d 'Update the list of available boilerplates'
