@@ -2,7 +2,10 @@ FROM alpine
 
 # install requirements
 RUN apk --no-cache --update add \
-      ca-certificates  git openssh util-linux && \
+      ca-certificates \
+      git \
+      openssh-client \
+      && \
       rm -rf /var/lib/apt/lists/* && \
       rm -rf /var/cache/apk/*
 
