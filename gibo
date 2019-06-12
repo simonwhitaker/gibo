@@ -90,9 +90,10 @@ dump() {
     init --silently
 
     language_file=$(find "$local_repo" -iname "$1.gitignore" | head -n 1)
+    language_file_relative=${language_file#"$local_repo/"}
 
     if [ -n "$language_file" ]; then
-        echo "### $remote_web_root${language_file/$local_repo/}"
+        echo "### $remote_web_root/$language_file_relative"
         echo
         cat "$language_file"
         echo
