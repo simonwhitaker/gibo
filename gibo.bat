@@ -15,8 +15,8 @@ goto :setup
 
 
 :version
-    echo %basename% 2.1.2 by Simon Whitaker ^<sw@netcetera.org^>
-    echo https://github.com/simonwhitaker/gitignore-boilerplates
+    echo %basename% 2.2 by Simon Whitaker ^<sw@netcetera.org^>
+    echo https://github.com/simonwhitaker/gibo
     goto :eof
 
 :usage
@@ -34,6 +34,7 @@ goto :setup
     echo     dump expr...  Dump boilerplate(s) to stdout
     echo     help          Display this help text
     echo     list          List available boilerplates
+    echo     root          Show the directory where gibo stores its boilerplates
     echo     search expr   Search inside boilerplates for expr
     echo     update        Update list of available boilerplates
     echo     version       Display current script version
@@ -77,6 +78,7 @@ goto :setup
     if /i "%a%"=="version"  call :version       & goto :end
     if /i "%a%"=="/v"       call :version       & goto :end
     if /i "%a%"=="list"     call :list "%~2"    & goto :end
+    if /i "%a%"=="root"     call :root          & goto :end
     if /i "%a%"=="search"   call :search "%~2"  & goto :end
     if /i "%a%"=="update"   call :update        & goto :end
 
@@ -135,6 +137,10 @@ goto :setup
         echo %%~nG
     )
 
+    goto :eof
+
+:root
+    echo %local_repo%
     goto :eof
 
 :search
