@@ -60,10 +60,8 @@ list() {
         shape='cat'
     fi
 
-    for path in $(find "$local_repo" -name '*.gitignore' | sort -f); do
-        filename=$(basename $path)
-        echo "${filename%.*}"
-    done | eval ${shape}
+    find "$local_repo" -name '*.gitignore' | sort -f \
+      | sed -e 's@^.*/\([^/]*\)\.gitignore$@\1@' | eval ${shape}
 }
 
 root() {
