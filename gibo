@@ -3,6 +3,11 @@
 # Script for easily accessing gitignore boilerplates from
 # https://github.com/github/gitignore
 
+set -o errexit
+set -o noclobber
+set -o nounset
+set -o pipefail
+
 remote_repo=https://github.com/github/gitignore.git
 local_repo=${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"}
 current_repo_rev=$(cd $local_repo 2>/dev/null && git rev-parse HEAD)
@@ -108,7 +113,7 @@ if [ $# -eq 0 ]; then
     exit 1
 fi
 
-# Parse comand-line
+# Parse command-line
 should_dump=0
 while [ $# -gt 0 ]; do
     case $1 in
