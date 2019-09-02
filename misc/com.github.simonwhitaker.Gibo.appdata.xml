@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component type="console-application">
+  <id>com.github.simonwhitaker.Gibo</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>Unlicense</project_license>
+  <name>gibo</name>
+  <summary>A shell script for easily accessing gitignore boilerplates</summary>
+  <description>
+    <p>
+      gibo (short for .gitignore boilerplates) is a shell script to help you easily
+      access .gitignore boilerplates from github.com/github/gitignore.
+    </p>
+  </description>
+  <url type="homepage">https://github.com/simonwhitaker/gibo</url>
+  <content_rating type="oars-1.0" />
+  <update_contact>sascha@peilicke.de</update_contact>
+  <provides>
+    <binary>gibo</binary>
+  </provides>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/simonwhitaker/gibo/6c834449cba92d50103062755aba7697ae79748e/misc/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+  <releases>
+    <release type="stable" date="2019-07-20" version="2.2.3" />
+  </releases>
+</component>
