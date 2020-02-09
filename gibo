@@ -69,7 +69,7 @@ root() {
 }
 
 search() {
-    init
+    init --silently
     for filename in $(find "$local_repo" -iname "*$**.gitignore" -exec basename \{\} .gitignore \; | sort); do
         echo $filename
     done
@@ -98,6 +98,7 @@ dump() {
         echo
     else
         echo "Unknown argument: $1" >&2
+        exit 1
     fi
 }
 
