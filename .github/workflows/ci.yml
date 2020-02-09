@@ -3,11 +3,15 @@ name: CI
 on: [push]
 
 jobs:
-  build:
-
+  test:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Get version
       run: ./gibo version
+  test-windows:
+    runs-on: [windows-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Get version
+        run: .\gibo.bat version
