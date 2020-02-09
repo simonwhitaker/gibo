@@ -1,5 +1,7 @@
 # gibo: fast access to .gitignore boilerplates
 
+![CI](https://github.com/simonwhitaker/gibo/workflows/CI/badge.svg)
+
 **gibo** (short for .gitignore boilerplates) is a shell script to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
 
 ## Typical usage
