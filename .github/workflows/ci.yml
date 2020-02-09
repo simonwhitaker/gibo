@@ -9,6 +9,8 @@ jobs:
     - uses: actions/checkout@v2
     - name: Get version
       run: ./gibo version
+    - name: Run test
+      run: ./tests/test.sh
   test-windows:
     runs-on: [windows-latest]
     steps:
