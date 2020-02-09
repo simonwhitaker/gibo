@@ -10,6 +10,10 @@ fail() {
     exit 1
 }
 
+# Create a dummy .git directory inside $GIBO_BOILERPLATES to placate gibo's
+# clone function.
+(cd $GIBO_BOILERPLATES && mkdir -p .git)
+
 # Calling gibo without subcommand exits with non-zero exit status
 $gibo >/dev/null 2>&1
 
