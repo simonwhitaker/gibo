@@ -16,5 +16,5 @@ A new [Docker build](https://hub.docker.com/repository/docker/simonwhitaker/gibo
 export GIBO_VERSION=0.0.1 # replace with the updated version number
 export GIBO_URL=https://github.com/simonwhitaker/gibo/archive/${GIBO_VERSION}.tar.gz
 export GIBO_SHA=$(curl -sSL $GIBO_URL | shasum -a 256 | cut -d' ' -f1)
-brew bump-formula-pr gibo --url $GIBO_URL --sha256 $GIBO_URL
+brew bump-formula-pr gibo --url $GIBO_URL --sha256 $GIBO_SHA
 ```
