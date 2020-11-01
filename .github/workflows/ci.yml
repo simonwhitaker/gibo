@@ -1,18 +1,26 @@
 name: CI
 
-on: [push]
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
+    - name: Check out source
+      uses: actions/checkout@v2
     - name: Get version
       run: ./gibo version
+    - name: Shellcheck
+      run: shellcheck ./gibo
     - name: Run test
       run: ./tests/test.sh
+
   test-windows:
-    runs-on: [windows-latest]
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - name: Get version
