@@ -15,7 +15,7 @@ jobs:
     - name: Get version
       run: ./gibo version
     - name: Shellcheck
-      run: shellcheck ./gibo
+      run: shellcheck ./gibo tests/test.sh
     - name: Run test
       run: ./tests/test.sh
 
