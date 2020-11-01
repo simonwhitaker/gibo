@@ -5,11 +5,11 @@
 
 remote_repo=https://github.com/github/gitignore.git
 local_repo=${GIBO_BOILERPLATES:-"$HOME/.gitignore-boilerplates"}
-current_repo_rev=$(cd $local_repo 2>/dev/null && git rev-parse HEAD)
+current_repo_rev=$(cd "$local_repo" 2>/dev/null && git rev-parse HEAD)
 remote_web_root=https://raw.github.com/github/gitignore/$current_repo_rev
 
 version() {
-    echo "$(basename $0) 2.2.4 by Simon Whitaker <sw@netcetera.org>"
+    echo "$(basename "$0") 2.2.4 by Simon Whitaker <sw@netcetera.org>"
     echo "https://github.com/simonwhitaker/gibo"
 }
 
@@ -20,10 +20,10 @@ cat << EOF >&2
 Fetches gitignore boilerplates from https://github.com/github/gitignore
 
 Usage:
-    $(basename $0) [command]
+    $(basename "$0") [command]
 
 Example:
-    $(basename $0) dump Swift Xcode >> .gitignore
+    $(basename "$0") dump Swift Xcode >> .gitignore
 
 Commands:
     dump BOILERPLATE...   Write boilerplate(s) to STDOUT
@@ -37,7 +37,7 @@ EOF
 }
 
 clone() {
-    if [ $1 -a $1 = '--silently' ]; then
+    if [ "$1" ] && [ "$1" = '--silently' ]; then
         git clone -q "$remote_repo" "$local_repo"
     else
         echo "Cloning $remote_repo to $local_repo"
@@ -47,7 +47,7 @@ clone() {
 
 init() {
     if [ ! -e "$local_repo/.git" ]; then
-        clone $1
+        clone "$1"
     fi
 }
 
@@ -65,13 +65,13 @@ list() {
 }
 
 root() {
-    echo $local_repo
+    echo "$local_repo"
 }
 
 search() {
     init --silently
     for filename in $(find "$local_repo" -iname "*$**.gitignore" -exec basename \{\} .gitignore \; | sort); do
-        echo $filename
+        echo "$filename"
     done
 }
 
@@ -79,7 +79,7 @@ update() {
     if [ ! -e "$local_repo/.git" ]; then
         clone
     else
-        cd "$local_repo"
+        cd "$local_repo" || exit
         git pull --ff origin master
     fi
 }
@@ -144,7 +144,7 @@ while [ $# -gt 0 ]; do
         search )
             if [ $# -gt 1 ]; then
                 shift
-                search $*
+                search "$@"
                 exit 0
             else
                 usage
@@ -153,7 +153,7 @@ while [ $# -gt 0 ]; do
             ;;
         * ) # default case
             if [ $should_dump -eq 1 ]; then
-                dump $1
+                dump "$1"
             else
                 usage
                 exit 1
