@@ -38,10 +38,10 @@ EOF
 
 clone() {
     if [ "$1" ] && [ "$1" = '--silently' ]; then
-        git clone -q "$remote_repo" "$local_repo"
+        git clone --depth 1 --quiet "$remote_repo" "$local_repo"
     else
         echo "Cloning $remote_repo to $local_repo"
-        git clone "$remote_repo" "$local_repo"
+        git clone --depth 1 "$remote_repo" "$local_repo"
     fi
 }
 
