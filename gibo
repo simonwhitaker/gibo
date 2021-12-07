@@ -80,7 +80,7 @@ update() {
         clone
     else
         cd "$local_repo" || exit
-        git pull --ff origin master
+        git pull --ff origin main
     fi
 }
 
