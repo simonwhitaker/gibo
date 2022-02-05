@@ -28,15 +28,15 @@ if ! $gibo dump Foo >/dev/null; then
     fail "Got unsuccessful (non-zero) exit status for known boilerplate"
 fi
 
-# `gibo dump Foo` outputs 7 lines
-expected=7
+# `gibo dump Foo` outputs 8 lines
+expected=8
 lines=$($gibo dump Foo | wc -l)
 if [[ $lines -ne $expected ]]; then
     fail "Expected $expected lines in output of 'gibo dump Foo', got $lines"
 fi
 
-# `gibo dump Foo Bar` outputs 14 lines
-expected=14
+# `gibo dump Foo Bar` outputs 16 lines
+expected=16
 lines=$($gibo dump Foo Bar | wc -l)
 if [[ $lines -ne $expected ]]; then
     fail "Expected $expected lines in output of 'gibo dump Foo Bar', got $lines"
