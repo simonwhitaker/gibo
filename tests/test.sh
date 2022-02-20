@@ -36,7 +36,7 @@ if [[ $lines -ne $expected ]]; then
 fi
 
 # `gibo dump Foo Bar` outputs 16 lines
-expected=16
+expected=15
 lines=$($gibo dump Foo Bar | wc -l)
 if [[ $lines -ne $expected ]]; then
     fail "Expected $expected lines in output of 'gibo dump Foo Bar', got $lines"
