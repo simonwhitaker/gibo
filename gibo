@@ -9,7 +9,7 @@ current_repo_rev=$(cd "$local_repo" 2>/dev/null && git rev-parse HEAD)
 remote_web_root=https://raw.github.com/github/gitignore/$current_repo_rev
 
 version() {
-    echo "$(basename "$0") 2.2.7 by Simon Whitaker"
+    echo "$(basename "$0") 2.2.8 by Simon Whitaker"
     echo "https://github.com/simonwhitaker/gibo"
 }
 
@@ -81,6 +81,7 @@ update() {
     else
         cd "$local_repo" || exit
         git pull --ff origin main
+        git checkout main
     fi
 }
 
