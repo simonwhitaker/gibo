@@ -18,10 +18,16 @@ For additional usage instructions, run `gibo help`.
 
 ### Installation on Fedora Linux
 
-`gibo` is avaiable as a [COPR repository](https://copr.fedorainfracloud.org/). It provides packages for main script and bash / zsh completions:
+`gibo` is available as a [COPR repository](https://copr.fedorainfracloud.org/). It provides packages for main script and bash / zsh completions:
 
     dnf copr enable saschpe/gibo
     dnf install gibo gibo-bash-completion gibo-zsh-completion
+    
+### Installation on Arch Linux
+
+`gibo` is available on the [AUR](https://aur.archlinux.org/packages/gibo). The package provides the main script and bash / zsh / fish completions. If using an aur helper such as [yay](https://github.com/Jguer/yay), run:
+
+    yay -S gibo    
 
 ### Installation on other (*nix) platforms
 
