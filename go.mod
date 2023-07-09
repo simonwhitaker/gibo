@@ -1,4 +1,4 @@
-module github.com/simonwhitaker/gibo
+module github.com/simonwhitaker/gibo-go
 
 go 1.20
 

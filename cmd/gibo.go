@@ -17,8 +17,8 @@ func init() {
 }
 
 var giboCmd = &cobra.Command{
-	Use:   "gibo",
-	Short: "gibo is a command-line tool for easily accessing gitignore boilerplates",
+	Use:   "gibo-go",
+	Short: "gibo-go is a command-line tool for easily accessing gitignore boilerplates",
 }
 
 func Execute() {

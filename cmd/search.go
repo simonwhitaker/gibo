@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/simonwhitaker/gibo/utils"
+	"github.com/simonwhitaker/gibo-go/utils"
 	"github.com/spf13/cobra"
 )
 
