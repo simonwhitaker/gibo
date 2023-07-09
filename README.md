@@ -10,7 +10,19 @@ For additional usage instructions, run `gibo help`.
 
 ## Installation
 
-Coming soon
+Either check out the repo and build it yourself:
+
+```sh
+go install .
+```
+
+Or install using `go install`:
+
+```sh
+go install github.com/simonwhitaker/gibo-go@latest
+```
+
+Or download the latest [release](https://github.com/simonwhitaker/gibo-go/releases).
 
 ### Installation on Docker
 
