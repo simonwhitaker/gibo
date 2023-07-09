@@ -1,10 +1,12 @@
-# gibo: fast access to .gitignore boilerplates
+# gibo-go: fast access to .gitignore boilerplates
 
-**gibo** (short for .gitignore boilerplates) is a shell script to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
+**gibo-go** (short for .gitignore boilerplates in Go) is a command-line tool to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
+
+It is a reimplementation in Go of [gibo](https://github.com/simonwhitaker/gibo).
 
 ## Typical usage
 
-    $ gibo dump Swift Xcode >> .gitignore
+    $ gibo-go dump Swift Xcode >> .gitignore
 
 For additional usage instructions, run `gibo help`.
 
@@ -35,7 +37,7 @@ Just type the following command.
 See the instructions at:
 
 ```
-gibo completion
+gibo-go completion
 ```
 
 ## Use gibo to generate .hgignore files
