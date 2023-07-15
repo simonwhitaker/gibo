@@ -108,6 +108,16 @@ The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax. 
     echo 'syntax: glob' > .hgignore
     $ gibo dump Python TextMate >> .hgignore
 
+## Feeling brave?
+
+Want to help test gibo v3, re-written in Go?! Clone https://github.com/simonwhitaker/gibo-go, or:
+
+```command
+brew install simonwhitaker/tap/gibo-go
+```
+
+(It installs as `gibo-go`, so you can install it alongside classic gibo.)
+
 ## Credits
 
 gibo was written by Simon Whitaker ([@s1mn](http://twitter.com/s1mn))
