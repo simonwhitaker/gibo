@@ -28,9 +28,7 @@ Or download the latest [release](https://github.com/simonwhitaker/gibo-go/releas
 
 ### Installation on Docker
 
-Just type the following command.
-
-    $ docker run --rm simonwhitaker/gibo
+Coming soon
 
 ## Tab completion in bash, zsh and fish
 
