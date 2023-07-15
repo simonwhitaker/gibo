@@ -2,7 +2,7 @@
 
 **gibo-go** (short for .gitignore boilerplates in Go) is a command-line tool to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
 
-It is a reimplementation in Go of [gibo](https://github.com/simonwhitaker/gibo).
+It is a reimplementation of [gibo](https://github.com/simonwhitaker/gibo), in Go.
 
 ## Typical usage
 
