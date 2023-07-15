@@ -7,12 +7,21 @@ before:
     # you may remove this if you don't need go generate
     # - go generate ./...
 builds:
-  - env:
-      - CGO_ENABLED=0
+  - binary: gibo
+    id: gibo
     goos:
       - linux
       - windows
+    ldflags:
+      # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
+      "-s -w -X github.com/simonwhitaker/gibo-go/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo-go/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo-go/cmd.date={{.Date}}"
+  - binary: gibo
+    id: gibo-macos
+    goos:
       - darwin
+    hooks:
+      post:
+        - gon gon.hcl
     ldflags:
       # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
       "-s -w -X github.com/simonwhitaker/gibo-go/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo-go/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo-go/cmd.date={{.Date}}"
