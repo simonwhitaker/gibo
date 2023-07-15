@@ -1,4 +1,8 @@
-# To release a new version
+# To release a new version automatically
+
+Just pust a version tag (e.g. `v3.0.1-beta.1`) to Github
+
+## To release a new version manually
 
 1. Install [GoReleaser](https://goreleaser.com/):
 
@@ -20,7 +24,3 @@
     ```sh
     GITHUB_TOKEN=$(gh auth token) goreleaser release --clean
     ```
-
-## To update Homebrew
-
-TODO
