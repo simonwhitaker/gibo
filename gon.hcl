@@ -2,8 +2,11 @@
 #
 # The path follows a pattern
 # ./dist/BUILD-ID_TARGET/BINARY-NAME
-source = ["./dist/gibo-macos_darwin_arm64/gibo"]
-bundle_id = "com.mitchellh.example.terraform"
+source = [
+  "./dist/gibo-macos_darwin_arm64/gibo"
+  "./dist/gibo-macos_darwin_amd64_v1/gibo"
+]
+bundle_id = "org.netcetera.gibo"
 
 apple_id {
   username = "sw@netcetera.org"
