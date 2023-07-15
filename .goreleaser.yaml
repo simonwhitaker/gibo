@@ -32,6 +32,16 @@ archives:
     format_overrides:
       - goos: windows
         format: zip
+brews:
+  - name: gibo-go
+    homepage: https://github.com/simonwhitaker/gibo-go
+    tap:
+      owner: simonwhitaker
+      name: homebrew-tap
+    commit_author:
+      name: Simon Whitaker
+      email: sw@netcetera.org
+
 checksum:
   name_template: "checksums.txt"
 snapshot:
