@@ -142,3 +142,39 @@ func Update() error {
 	}
 	return nil
 }
+
+func PrintInColumns(list []string, width int) {
+	maxLength := 0
+	for _, s := range list {
+		if len(s) > maxLength {
+			maxLength = len(s)
+		}
+	}
+
+	// For n columns, we need enough room for n-1 spaces between the columns.
+	//
+	// For a list where the longest string is of length `maxLength`, the maximum
+	// number of columns we can print is the largest number, n, where:
+	//
+	//    n * `maxLength` + n - 1 <= width
+	//
+	// Rearranging:
+	//
+	//    n * `maxLength` + n <= width + 1
+	//    n * (`maxLength` - 1) <= width + 1
+	//    n <= (width + 1) / (`maxLength` + 1)
+	numColumns := (width + 1) / (maxLength + 1)
+	if numColumns == 0 {
+		numColumns = 1
+	}
+
+	fmtString := fmt.Sprintf("%%-%ds", maxLength)
+	for i, s := range list {
+		fmt.Printf(fmtString, s)
+		if (i%numColumns == numColumns-1) || i == len(list)-1 {
+			fmt.Print("\n")
+		} else {
+			fmt.Print(" ")
+		}
+	}
+}

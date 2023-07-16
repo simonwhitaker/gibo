@@ -5,6 +5,7 @@ go 1.20
 require (
 	github.com/go-git/go-git/v5 v5.3.0
 	github.com/spf13/cobra v1.7.0
+	golang.org/x/term v0.10.0
 )
 
 require (
