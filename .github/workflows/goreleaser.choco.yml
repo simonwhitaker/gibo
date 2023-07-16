@@ -27,4 +27,5 @@ jobs:
           version: latest
           args: release -f .goreleaser.choco.yaml --clean
         env:
+          GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
           CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
