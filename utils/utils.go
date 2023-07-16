@@ -153,16 +153,16 @@ func PrintInColumns(list []string, width int) {
 
 	// For n columns, we need enough room for n-1 spaces between the columns.
 	//
-	// For a list where the longest string is of length `maxLength`, the maximum
+	// For a list where the longest string is of length maxLength, the maximum
 	// number of columns we can print is the largest number, n, where:
 	//
-	//    n * `maxLength` + n - 1 <= width
+	//    n * maxLength + n - 1 <= width
 	//
 	// Rearranging:
 	//
-	//    n * `maxLength` + n <= width + 1
-	//    n * (`maxLength` - 1) <= width + 1
-	//    n <= (width + 1) / (`maxLength` + 1)
+	//    n * maxLength + n <= width + 1
+	//    n * (maxLength - 1) <= width + 1
+	//    n <= (width + 1) / (maxLength + 1)
 	numColumns := (width + 1) / (maxLength + 1)
 	if numColumns == 0 {
 		numColumns = 1
