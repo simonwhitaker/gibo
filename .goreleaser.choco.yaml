@@ -25,6 +25,8 @@ chocolateys:
     license_url: https://github.com/simonwhitaker/gibo-go/blob/main/LICENSE
     require_license_acceptance: false
     url_template: "https://github.com/simonwhitaker/gibo-go/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    authors: Simon Whitaker
+    description: Fast access to .gitignore boilerplates
 # The lines beneath this are called `modelines`. See `:help modeline`
 # Feel free to remove those if you don't want/use them.
 # yaml-language-server: $schema=https://goreleaser.com/static/schema.json
