@@ -10,7 +10,7 @@ It is a reimplementation of [gibo](https://github.com/simonwhitaker/gibo), in Go
 $ gibo-go dump Swift Xcode >> .gitignore
 ```
 
-For additional usage instructions, run `gibo help`.
+For additional usage instructions, run `gibo-go help`.
 
 ## Installation
 
@@ -53,9 +53,9 @@ See the instructions at:
 gibo-go completion
 ```
 
-## Use gibo to generate .hgignore files
+## Use gibo-go to generate .hgignore files
 
-The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax. This means that you can use gibo to generate .hgignore files, as long as the .hgignore files use the `glob` syntax:
+The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax. This means that you can use gibo-go to generate .hgignore files, as long as the .hgignore files use the `glob` syntax:
 
 ```sh
 echo 'syntax: glob' > .hgignore
@@ -64,4 +64,4 @@ gibo-go dump Python >> .hgignore
 
 ## Credits
 
-gibo was written by Simon Whitaker ([@s1mn](http://twitter.com/s1mn))
+gibo-go was written by Simon Whitaker ([@s1mn](http://twitter.com/s1mn))
