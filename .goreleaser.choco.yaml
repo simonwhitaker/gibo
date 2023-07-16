@@ -15,6 +15,8 @@ builds:
       # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
       "-s -w -X github.com/simonwhitaker/gibo-go/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo-go/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo-go/cmd.date={{.Date}}"
 
+archives: []
+
 chocolateys:
   - name: gibo-go
     project_source_url: https://github.com/simonwhitaker/gibo-go
