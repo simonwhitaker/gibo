@@ -41,6 +41,17 @@ brews:
       name: Simon Whitaker
       email: sw@netcetera.org
 
+chocolateys:
+  - name: gibo-go
+    project_source_url: https://github.com/simonwhitaker/gibo-go
+    project_url: https://github.com/simonwhitaker/gibo-go
+    release_notes: "https://github.com/simonwhitaker/gibo-go/releases/tag/v{{ .Version }}"
+    api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
+    docs_url: https://github.com/simonwhitaker/gibo-go/blob/main/README.md
+    license_url: https://github.com/simonwhitaker/gibo-go/blob/main/LICENSE
+    require_license_acceptance: false
+    url_template: "https://github.com/simonwhitaker/gibo-go/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+
 checksum:
   name_template: "checksums.txt"
 snapshot:
