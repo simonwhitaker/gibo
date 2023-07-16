@@ -1,0 +1,31 @@
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+    # you may remove this if you don't need go generate
+    # - go generate ./...
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+    ldflags:
+      # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
+      "-s -w -X github.com/simonwhitaker/gibo-go/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo-go/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo-go/cmd.date={{.Date}}"
+
+chocolateys:
+  - name: gibo-go
+    project_source_url: https://github.com/simonwhitaker/gibo-go
+    project_url: https://github.com/simonwhitaker/gibo-go
+    release_notes: "https://github.com/simonwhitaker/gibo-go/releases/tag/v{{ .Version }}"
+    api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
+    docs_url: https://github.com/simonwhitaker/gibo-go/blob/main/README.md
+    license_url: https://github.com/simonwhitaker/gibo-go/blob/main/LICENSE
+    require_license_acceptance: false
+    url_template: "https://github.com/simonwhitaker/gibo-go/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+# The lines beneath this are called `modelines`. See `:help modeline`
+# Feel free to remove those if you don't want/use them.
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# vim: set ts=2 sw=2 tw=0 fo=cnqoj
