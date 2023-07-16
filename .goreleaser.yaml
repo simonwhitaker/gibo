@@ -34,7 +34,7 @@ archives:
 brews:
   - name: gibo-go
     homepage: https://github.com/simonwhitaker/gibo-go
-    tap:
+    repository:
       owner: simonwhitaker
       name: homebrew-tap
     commit_author:
