@@ -27,10 +27,6 @@ archives:
       {{- if .Arm }}v{{ .Arm }}{{ end }}
     # use zip for windows archives
 
-release:
-  # Don't upload to Github
-  skip_upload: true
-
 chocolateys:
   - name: gibo-go
     project_source_url: https://github.com/simonwhitaker/gibo-go
