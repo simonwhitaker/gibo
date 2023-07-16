@@ -1,6 +1,7 @@
 package cmd
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/simonwhitaker/gibo-go/utils"
@@ -11,8 +12,11 @@ var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Update the gitignore boilerplate repository",
 	Run: func(cmd *cobra.Command, args []string) {
-		if err := utils.Update(); err != nil {
+		msg, err := utils.Update()
+		if err != nil {
 			log.Fatal(err)
+		} else {
+			fmt.Println(msg)
 		}
 	},
 }

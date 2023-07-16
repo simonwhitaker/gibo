@@ -126,21 +126,23 @@ func ListBoilerplatesNoError() []string {
 	return result
 }
 
-func Update() error {
+func Update() (string, error) {
 	cloneIfNeeded()
 	r, err := git.PlainOpen(RepoDir())
 	if err != nil {
-		return err
+		return "", err
 	}
 	w, err := r.Worktree()
 	if err != nil {
-		return err
+		return "", err
 	}
 	err = w.Pull(&git.PullOptions{})
 	if err != nil && err != git.NoErrAlreadyUpToDate {
-		return err
+		return "", err
+	} else if err != nil {
+		return "Already up to date", nil
 	}
-	return nil
+	return "Updated", nil
 }
 
 func PrintInColumns(list []string, width int) {
