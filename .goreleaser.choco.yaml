@@ -26,7 +26,6 @@ archives:
       {{- else if eq .Arch "386" }}i386
       {{- else }}{{ .Arch }}{{ end }}
       {{- if .Arm }}v{{ .Arm }}{{ end }}
-    # use zip for windows archives
 
 release:
   skip_upload: true
@@ -49,3 +48,6 @@ chocolateys:
 
       It is a reimplementation of [gibo](https://github.com/simonwhitaker/gibo), in Go.
     tags: git gitignore
+
+checksum:
+  name_template: "checksums.windows.txt"
