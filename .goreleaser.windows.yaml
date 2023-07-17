@@ -27,9 +27,6 @@ archives:
       {{- else }}{{ .Arch }}{{ end }}
       {{- if .Arm }}v{{ .Arm }}{{ end }}
 
-release:
-  skip_upload: true
-
 chocolateys:
   - name: gibo-go
     title: "gibo-go: Fast access to .gitignore boilerplates"
