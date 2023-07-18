@@ -45,7 +45,7 @@ Download the latest [release](https://github.com/simonwhitaker/gibo-go/releases)
 
 Coming soon
 
-## Tab completion in bash, zsh and fish
+## Tab completion in bash, zsh, fish and Powershell
 
 See the instructions at:
 
