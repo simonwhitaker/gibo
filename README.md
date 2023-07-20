@@ -20,6 +20,12 @@ For additional usage instructions, run `gibo-go help`.
 brew install simonwhitaker/tap/gibo-go
 ```
 
+### Using Chocolatey
+
+```
+choco install gibo-go
+```
+
 ### Using the Go toolchain
 
 Or install using `go install`:
