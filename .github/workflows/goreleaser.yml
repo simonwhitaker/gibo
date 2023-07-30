@@ -53,3 +53,11 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
           CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
+  homebrew:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Bump Homebrew formula
+        uses: dawidd6/action-homebrew-bump-formula@v3
+        with:
+          token: ${{ secrets.HOMEBREW_CORE_GITHUB_API_TOKEN }}
+          formula: gibo
