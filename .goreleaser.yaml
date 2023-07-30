@@ -16,7 +16,7 @@ builds:
       - darwin
     ldflags:
       # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
-      "-s -w -X github.com/simonwhitaker/gibo-go/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo-go/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo-go/cmd.date={{.Date}}"
+      "-s -w -X github.com/simonwhitaker/gibo/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo/cmd.date={{.Date}}"
 
 archives:
   - format: tar.gz
@@ -33,8 +33,8 @@ archives:
       - goos: windows
         format: zip
 brews:
-  - name: gibo-go
-    homepage: https://github.com/simonwhitaker/gibo-go
+  - name: gibo
+    homepage: https://github.com/simonwhitaker/gibo
     repository:
       owner: simonwhitaker
       name: homebrew-tap

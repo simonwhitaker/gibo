@@ -1,6 +1,6 @@
 package main
 
-import "github.com/simonwhitaker/gibo-go/cmd"
+import "github.com/simonwhitaker/gibo/cmd"
 
 func main() {
 	cmd.Execute()

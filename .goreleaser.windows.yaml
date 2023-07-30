@@ -14,7 +14,7 @@ builds:
       - windows
     ldflags:
       # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
-      "-s -w -X github.com/simonwhitaker/gibo-go/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo-go/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo-go/cmd.date={{.Date}}"
+      "-s -w -X github.com/simonwhitaker/gibo/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo/cmd.date={{.Date}}"
 
 archives:
   - format: zip
@@ -28,20 +28,20 @@ archives:
       {{- if .Arm }}v{{ .Arm }}{{ end }}
 
 chocolateys:
-  - name: gibo-go
-    title: "gibo-go: Fast access to .gitignore boilerplates"
-    project_source_url: https://github.com/simonwhitaker/gibo-go
-    package_source_url: https://github.com/simonwhitaker/gibo-go
-    project_url: https://github.com/simonwhitaker/gibo-go
-    release_notes: "https://github.com/simonwhitaker/gibo-go/releases/tag/v{{ .Version }}"
+  - name: gibo
+    title: "gibo: Fast access to .gitignore boilerplates"
+    project_source_url: https://github.com/simonwhitaker/gibo
+    package_source_url: https://github.com/simonwhitaker/gibo
+    project_url: https://github.com/simonwhitaker/gibo
+    release_notes: "https://github.com/simonwhitaker/gibo/releases/tag/v{{ .Version }}"
     api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
-    docs_url: https://github.com/simonwhitaker/gibo-go/blob/main/README.md
-    license_url: https://github.com/simonwhitaker/gibo-go/blob/main/LICENSE
+    docs_url: https://github.com/simonwhitaker/gibo/blob/main/README.md
+    license_url: https://github.com/simonwhitaker/gibo/blob/main/LICENSE
     require_license_acceptance: false
-    url_template: "https://github.com/simonwhitaker/gibo-go/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    url_template: "https://github.com/simonwhitaker/gibo/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
     authors: Simon Whitaker
     description: |-
-      **gibo-go** (short for .gitignore boilerplates in Go) is a command-line tool to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
+      **gibo** (short for .gitignore boilerplates in Go) is a command-line tool to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
 
       It is a reimplementation of [gibo](https://github.com/simonwhitaker/gibo), in Go.
     tags: git gitignore

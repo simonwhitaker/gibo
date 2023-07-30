@@ -5,7 +5,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/simonwhitaker/gibo-go/utils"
+	"github.com/simonwhitaker/gibo/utils"
 	"github.com/spf13/cobra"
 	"golang.org/x/term"
 )

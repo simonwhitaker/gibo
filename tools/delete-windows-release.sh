@@ -11,6 +11,6 @@ fi
 gh release view "$tag" >/dev/null || exit 1
 
 gh release delete-asset -y "$tag" checksums.windows.txt
-gh release delete-asset -y "$tag" gibo-go_Windows_x86_64.zip
-gh release delete-asset -y "$tag" gibo-go_Windows_i386.zip
-gh release delete-asset -y "$tag" gibo-go_Windows_arm64.zip
+gh release delete-asset -y "$tag" gibo_Windows_x86_64.zip
+gh release delete-asset -y "$tag" gibo_Windows_i386.zip
+gh release delete-asset -y "$tag" gibo_Windows_arm64.zip

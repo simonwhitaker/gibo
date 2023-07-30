@@ -18,7 +18,7 @@ var (
 
 var versionCmd = &cobra.Command{
 	Use:   "version",
-	Short: "Show the current version number of gibo-go",
+	Short: "Show the current version number of gibo",
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Printf("%v v%v, commit %v, built on %v\n", filepath.Base(os.Args[0]), version, commit, date)
 	},
