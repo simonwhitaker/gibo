@@ -1,0 +1,50 @@
+# yaml-language-server: $schema=https://goreleaser.com/static/schema.json
+# This is an example .goreleaser.yml file with some sensible defaults.
+# Make sure to check the documentation at https://goreleaser.com
+before:
+  hooks:
+    # You may remove this if you don't use go modules.
+    - go mod tidy
+    # you may remove this if you don't need go generate
+    # - go generate ./...
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+    ldflags:
+      # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
+      "-s -w -X github.com/simonwhitaker/gibo-go/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo-go/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo-go/cmd.date={{.Date}}"
+
+archives:
+  - format: zip
+    # this name template makes the OS and Arch compatible with the results of uname.
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else if eq .Arch "386" }}i386
+      {{- else }}{{ .Arch }}{{ end }}
+      {{- if .Arm }}v{{ .Arm }}{{ end }}
+
+chocolateys:
+  - name: gibo-go
+    title: "gibo-go: Fast access to .gitignore boilerplates"
+    project_source_url: https://github.com/simonwhitaker/gibo-go
+    package_source_url: https://github.com/simonwhitaker/gibo-go
+    project_url: https://github.com/simonwhitaker/gibo-go
+    release_notes: "https://github.com/simonwhitaker/gibo-go/releases/tag/v{{ .Version }}"
+    api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
+    docs_url: https://github.com/simonwhitaker/gibo-go/blob/main/README.md
+    license_url: https://github.com/simonwhitaker/gibo-go/blob/main/LICENSE
+    require_license_acceptance: false
+    url_template: "https://github.com/simonwhitaker/gibo-go/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    authors: Simon Whitaker
+    description: |-
+      **gibo-go** (short for .gitignore boilerplates in Go) is a command-line tool to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
+
+      It is a reimplementation of [gibo](https://github.com/simonwhitaker/gibo), in Go.
+    tags: git gitignore
+
+checksum:
+  name_template: "checksums.windows.txt"
