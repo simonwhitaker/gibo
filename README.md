@@ -51,7 +51,9 @@ Download the latest [release](https://github.com/simonwhitaker/gibo/releases) fo
 
 ### Installation on Docker
 
-Coming soon
+```sh
+docker run --rm simonwhitaker/gibo
+```
 
 ## Tab completion in bash, zsh, fish and Powershell
 
