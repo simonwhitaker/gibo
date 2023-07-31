@@ -2,8 +2,6 @@
 
 **gibo** (short for .gitignore boilerplates in Go) is a command-line tool to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
 
-It is a reimplementation of [gibo](https://github.com/simonwhitaker/gibo), in Go.
-
 ## Typical usage
 
 ```console
@@ -17,6 +15,12 @@ For additional usage instructions, run `gibo help`.
 ### Using Homebrew
 
 ```sh
+brew install gibo
+```
+
+Or use the tap, which is slightly more up-to-date:
+
+```sh
 brew install simonwhitaker/tap/gibo
 ```
 
@@ -27,8 +31,6 @@ choco install gibo
 ```
 
 ### Using the Go toolchain
-
-Or install using `go install`:
 
 ```sh
 go install github.com/simonwhitaker/gibo@latest
