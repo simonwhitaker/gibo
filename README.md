@@ -24,11 +24,11 @@ Or use the tap, which is slightly more up-to-date:
 brew install simonwhitaker/tap/gibo
 ```
 
-### Using Chocolatey
+<!-- ### Using Chocolatey
 
 ```
 choco install gibo
-```
+``` -->
 
 ### Using the Go toolchain
 
