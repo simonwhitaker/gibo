@@ -13,6 +13,8 @@ permissions:
 
 jobs:
   goreleaser:
+    # Generates the Github release, and updates the simonwhitaker/tap/gibo
+    # Homebrew formula
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,6 +35,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
   goreleaser-windows:
+    # Generates the Windows artefacts for the release, updates the gibo
+    # chocolatey package
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
@@ -53,7 +57,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
           CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
-  homebrew:
+  homebrew_core:
     runs-on: ubuntu-latest
     steps:
       - name: Bump Homebrew formula
@@ -61,8 +65,7 @@ jobs:
         with:
           token: ${{ secrets.HOMEBREW_CORE_GITHUB_API_TOKEN }}
           formula: gibo
-  push_to_docker_hub:
-    name: Push Docker image to Docker Hub
+  docker_hub:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
