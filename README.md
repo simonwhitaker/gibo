@@ -18,10 +18,19 @@ For additional usage instructions, run `gibo help`.
 brew install gibo
 ```
 
-Or use the tap, which is slightly more up-to-date:
+Or use the tap, which may be slightly more up-to-date:
 
 ```sh
 brew install simonwhitaker/tap/gibo
+```
+
+### Using Scoop
+
+On Windows, you can install gibo using [Scoop](https://scoop.sh/#/apps?q=gibo):
+
+```sh
+scoop bucket add main
+scoop install main/gibo
 ```
 
 <!-- ### Using Chocolatey
