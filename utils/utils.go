@@ -48,11 +48,14 @@ func cloneIfNeeded() error {
 	return nil
 }
 
+// pathForBoilerplate returns the filepath for a given boilerplate name. The
+// search is case-insensitive; passing `python` to `name` will find the path to
+// `Python.gitignore`, for example.
 func pathForBoilerplate(name string) (string, error) {
 	filename := name + ".gitignore"
 	var result string = ""
 	filepath.WalkDir(RepoDir(), func(path string, d fs.DirEntry, err error) error {
-		if filepath.Base(path) == filename {
+		if strings.ToLower(filepath.Base(path)) == strings.ToLower(filename) {
 			result = path
 			// Exit WalkDir early, we've found our match
 			return filepath.SkipAll
