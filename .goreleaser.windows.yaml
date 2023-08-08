@@ -27,22 +27,22 @@ archives:
       {{- else }}{{ .Arch }}{{ end }}
       {{- if .Arm }}v{{ .Arm }}{{ end }}
 
-# chocolateys:
-#   - name: gibo
-#     title: "gibo: Fast access to .gitignore boilerplates"
-#     project_source_url: https://github.com/simonwhitaker/gibo
-#     package_source_url: https://github.com/simonwhitaker/gibo
-#     project_url: https://github.com/simonwhitaker/gibo
-#     release_notes: "https://github.com/simonwhitaker/gibo/releases/tag/v{{ .Version }}"
-#     api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
-#     docs_url: https://github.com/simonwhitaker/gibo/blob/main/README.md
-#     license_url: https://github.com/simonwhitaker/gibo/blob/main/LICENSE
-#     require_license_acceptance: false
-#     url_template: "https://github.com/simonwhitaker/gibo/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
-#     authors: Simon Whitaker
-#     description: |-
-#       **gibo** (short for .gitignore boilerplates in Go) is a command-line tool to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
-#     tags: git gitignore
+chocolateys:
+  - name: gibo
+    title: "gibo: Fast access to .gitignore boilerplates"
+    project_source_url: https://github.com/simonwhitaker/gibo
+    package_source_url: https://github.com/simonwhitaker/gibo
+    project_url: https://github.com/simonwhitaker/gibo
+    release_notes: "https://github.com/simonwhitaker/gibo/releases/tag/v{{ .Version }}"
+    api_key: "{{ .Env.CHOCOLATEY_API_KEY }}"
+    docs_url: https://github.com/simonwhitaker/gibo/blob/main/README.md
+    license_url: https://github.com/simonwhitaker/gibo/blob/main/LICENSE
+    require_license_acceptance: false
+    url_template: "https://github.com/simonwhitaker/gibo/releases/download/{{ .Tag }}/{{ .ArtifactName }}"
+    authors: Simon Whitaker
+    description: |-
+      **gibo** (short for .gitignore boilerplates in Go) is a command-line tool to help you easily access .gitignore boilerplates from [github.com/github/gitignore](https://github.com/github/gitignore).
+    tags: git gitignore
 
 checksum:
   name_template: "checksums.windows.txt"

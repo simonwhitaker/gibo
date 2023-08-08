@@ -33,11 +33,11 @@ scoop bucket add main
 scoop install main/gibo
 ```
 
-<!-- ### Using Chocolatey
+### Using Chocolatey
 
 ```
 choco install gibo
-``` -->
+```
 
 ### Using the Go toolchain
 
