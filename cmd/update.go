@@ -8,6 +8,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func init() {
+	giboCmd.AddCommand(updateCmd)
+}
+
 var updateCmd = &cobra.Command{
 	Use:   "update",
 	Short: "Update the gitignore boilerplate repository",

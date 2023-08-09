@@ -7,6 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func init() {
+	giboCmd.AddCommand(dumpCmd)
+}
+
 var dumpCmd = &cobra.Command{
 	Use:       "dump",
 	Short:     "Dump a boilerplate",

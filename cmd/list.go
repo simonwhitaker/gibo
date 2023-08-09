@@ -10,6 +10,10 @@ import (
 	"golang.org/x/term"
 )
 
+func init() {
+	giboCmd.AddCommand(listCmd)
+}
+
 var listCmd = &cobra.Command{
 	Use:   "list",
 	Short: "List available boilerplates",

@@ -11,6 +11,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func init() {
+	giboCmd.AddCommand(searchCmd)
+}
+
 var searchCmd = &cobra.Command{
 	Use:   "search",
 	Short: "Search for boilerplates",

@@ -7,15 +7,6 @@ import (
 	"github.com/spf13/cobra"
 )
 
-func init() {
-	giboCmd.AddCommand(dumpCmd)
-	giboCmd.AddCommand(listCmd)
-	giboCmd.AddCommand(rootCmd)
-	giboCmd.AddCommand(searchCmd)
-	giboCmd.AddCommand(updateCmd)
-	giboCmd.AddCommand(versionCmd)
-}
-
 var giboCmd = &cobra.Command{
 	Use:   "gibo",
 	Short: "gibo is a command-line tool for easily accessing gitignore boilerplates",

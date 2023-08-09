@@ -7,6 +7,10 @@ import (
 	"github.com/spf13/cobra"
 )
 
+func init() {
+	giboCmd.AddCommand(rootCmd)
+}
+
 var rootCmd = &cobra.Command{
 	Use:   "root",
 	Short: "Show the directory where gibo stores its boilerplates",

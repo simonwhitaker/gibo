@@ -16,6 +16,10 @@ var (
 	date    = "unknown"
 )
 
+func init() {
+	giboCmd.AddCommand(versionCmd)
+}
+
 var versionCmd = &cobra.Command{
 	Use:   "version",
 	Short: "Show the current version number of gibo",
