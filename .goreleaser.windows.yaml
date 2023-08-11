@@ -14,7 +14,7 @@ builds:
       - windows
     ldflags:
       # Default: '-s -w -X main.version={{.Version}} -X main.commit={{.Commit}} -X main.date={{.Date}} -X main.builtBy=goreleaser'
-      "-s -w -X github.com/simonwhitaker/gibo/cmd.version={{.Version}} -X github.com/simonwhitaker/gibo/cmd.commit={{.Commit}} -X github.com/simonwhitaker/gibo/cmd.date={{.Date}}"
+      "-s -w -X github.com/simonwhitaker/gibo/cmd.version={{.Version}}"
 
 archives:
   - format: zip
