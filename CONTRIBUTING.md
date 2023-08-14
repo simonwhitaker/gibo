@@ -1,6 +1,6 @@
 # To release a new version automatically
 
-Just pust a version tag (e.g. `v3.0.1-beta.1`) to Github
+Just push a version tag (e.g. `v3.0.1-beta.1`) to Github
 
 ## To release a new version manually
 
