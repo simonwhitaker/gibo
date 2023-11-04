@@ -1,7 +1,0 @@
-{
-  "name": "Debian",
-  "image": "mcr.microsoft.com/devcontainers/base:bullseye",
-  "features": {
-    "ghcr.io/lukewiwa/features/shellcheck:0": {}
-  }
-}
