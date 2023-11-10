@@ -22,7 +22,7 @@ func init() {
 
 var listIgnoreCmd = &cobra.Command{
 	Use:   "list-ignore",
-	Short: "List boilerplates in the .gitignore file.",
+	Short: "List boilerplates in the .gitignore file",
 	Run: func(cmd *cobra.Command, args []string) {
 		list, err := findRegisteredBoilerplates(args)
 		if err != nil {
