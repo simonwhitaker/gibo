@@ -6,6 +6,7 @@ import (
 	"io/fs"
 	"os"
 	"path/filepath"
+	"runtime"
 	"sort"
 	"strings"
 
@@ -13,11 +14,27 @@ import (
 )
 
 func RepoDir() string {
+	const gitignoreDir = ".gitignore-boilerplates"
+
 	override := os.Getenv("GIBO_BOILERPLATES")
 	if len(override) > 0 {
 		return override
 	}
-	return filepath.Join(os.Getenv("HOME"), ".gitignore-boilerplates")
+
+	override = os.Getenv("XDG_DATA_HOME")
+	if len(override) > 0 {
+		return filepath.Join(override, "gibo", gitignoreDir)
+	}
+
+	if runtime.GOOS == "windows" {
+		override := os.Getenv("LOCALAPPDATA")
+		if len(override) > 0 {
+			return filepath.Join(override, gitignoreDir)
+		}
+	}
+
+	homeDir, _ := os.UserHomeDir()
+	return filepath.Join(homeDir, gitignoreDir)
 }
 
 func cloneRepo(repo string) error {
