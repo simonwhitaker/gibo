@@ -4,9 +4,9 @@ import (
 	"fmt"
 	"io"
 	"io/fs"
+	"log"
 	"os"
 	"path/filepath"
-	"runtime"
 	"sort"
 	"strings"
 
@@ -14,28 +14,11 @@ import (
 )
 
 func RepoDir() string {
-	const gitignoreBoilerplatesDir = "gitignore-boilerplates"
-	const gitignoreBoilerplatesHiddenDir = "." + gitignoreBoilerplatesDir
-
-	override := os.Getenv("GIBO_BOILERPLATES")
-	if len(override) > 0 {
-		return override
+	cacheDir, err := os.UserCacheDir()
+	if err != nil {
+		log.Fatalln("gibo can't determine your user cache directory. Please file an issue at https://github.com/simonwhitaker/gibo/issues")
 	}
-
-	override = os.Getenv("XDG_DATA_HOME")
-	if len(override) > 0 {
-		return filepath.Join(override, "gibo", gitignoreBoilerplatesDir)
-	}
-
-	if runtime.GOOS == "windows" {
-		override := os.Getenv("LOCALAPPDATA")
-		if len(override) > 0 {
-			return filepath.Join(override, gitignoreBoilerplatesDir)
-		}
-	}
-
-	homeDir, _ := os.UserHomeDir()
-	return filepath.Join(homeDir, gitignoreBoilerplatesHiddenDir)
+	return filepath.Join(cacheDir, "gibo")
 }
 
 func cloneRepo(repo string) error {
