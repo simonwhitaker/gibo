@@ -14,17 +14,11 @@ import (
 )
 
 func RepoDir() string {
-	xdgCacheDir := os.Getenv("XDG_CACHE_HOME")
-	if len(xdgCacheDir) > 0 {
-		return filepath.Join(xdgCacheDir, "gibo", "gitignore-boilerplates")
-	} else {
-		cacheDir, err := os.UserCacheDir()
-		if err != nil {
-			log.Fatalln("gibo can't determine your user cache directory. Please file an issue at https://github.com/simonwhitaker/gibo/issues")
-
-		}
-		return filepath.Join(cacheDir, "gibo", "gitignore-boilerplates")
+	cacheDir, err := os.UserCacheDir()
+	if err != nil {
+		log.Fatalln("gibo can't determine your user cache directory. Please file an issue at https://github.com/simonwhitaker/gibo/issues")
 	}
+	return filepath.Join(cacheDir, "gibo", "gitignore-boilerplates")
 }
 
 func cloneRepo(repo string) error {
