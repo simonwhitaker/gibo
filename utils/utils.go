@@ -18,7 +18,7 @@ func RepoDir() string {
 	if err != nil {
 		log.Fatalln("gibo can't determine your user cache directory. Please file an issue at https://github.com/simonwhitaker/gibo/issues")
 	}
-	return filepath.Join(cacheDir, "gibo")
+	return filepath.Join(cacheDir, "gibo", "gitignore-boilerplates")
 }
 
 func cloneRepo(repo string) error {
@@ -56,7 +56,7 @@ func pathForBoilerplate(name string) (string, error) {
 	filename := name + ".gitignore"
 	var result string = ""
 	filepath.WalkDir(RepoDir(), func(path string, d fs.DirEntry, err error) error {
-		if strings.ToLower(filepath.Base(path)) == strings.ToLower(filename) {
+		if strings.EqualFold(filepath.Base(path), filename) {
 			result = path
 			// Exit WalkDir early, we've found our match
 			return filepath.SkipAll
