@@ -4,8 +4,8 @@
 
 ## Typical usage
 
-```console
-$ gibo dump Swift Xcode >> .gitignore
+```command
+gibo dump Swift Xcode >> .gitignore
 ```
 
 For additional usage instructions, run `gibo help`.
@@ -14,13 +14,13 @@ For additional usage instructions, run `gibo help`.
 
 ### Using Homebrew
 
-```sh
+```command
 brew install gibo
 ```
 
 Or use the tap, which may be slightly more up-to-date:
 
-```sh
+```command
 brew install simonwhitaker/tap/gibo
 ```
 
@@ -28,20 +28,20 @@ brew install simonwhitaker/tap/gibo
 
 On Windows, you can install gibo using [Scoop](https://scoop.sh/#/apps?q=gibo):
 
-```sh
+```command
 scoop bucket add main
 scoop install main/gibo
 ```
 
 ### Using Chocolatey
 
-```
+```command
 choco install gibo
 ```
 
 ### Using the Go toolchain
 
-```sh
+```command
 go install github.com/simonwhitaker/gibo@latest
 ```
 
@@ -49,7 +49,7 @@ go install github.com/simonwhitaker/gibo@latest
 
 Clone the repo, then:
 
-```sh
+```command
 cd gibo
 go install .
 ```
@@ -60,7 +60,7 @@ Download the latest [release](https://github.com/simonwhitaker/gibo/releases) fo
 
 ### Installation on Docker
 
-```sh
+```command
 docker run --rm simonwhitaker/gibo
 ```
 
@@ -68,7 +68,7 @@ docker run --rm simonwhitaker/gibo
 
 See the instructions at:
 
-```
+```command
 gibo completion
 ```
 
@@ -76,7 +76,7 @@ gibo completion
 
 The `glob` .hgignore syntax for Mercurial is compatible with .gitignore syntax. This means that you can use gibo to generate .hgignore files, as long as the .hgignore files use the `glob` syntax:
 
-```sh
+```command
 echo 'syntax: glob' > .hgignore
 gibo dump Python >> .hgignore
 ```
