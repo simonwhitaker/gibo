@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/plumbing"
 )
 
 func RepoDir() string {
@@ -146,7 +147,17 @@ func Update() (string, error) {
 	}
 	err = w.Pull(&git.PullOptions{})
 	if err != nil && err != git.NoErrAlreadyUpToDate {
-		return "", err
+		reference, err := r.Reference(plumbing.NewRemoteReferenceName("origin", "main"), false)
+		if err != nil {
+			return "", err
+		}
+		err = w.Reset(&git.ResetOptions{
+			Commit: reference.Hash(),
+			Mode:   git.HardReset,
+		})
+		if err != nil {
+			return "", err
+		}
 	} else if err != nil {
 		return "Already up to date", nil
 	}
