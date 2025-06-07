@@ -7,7 +7,7 @@ commands:
     run: git tag -am $tag $tag && git push origin refs/tags/$tag
   release-next:
     run: |
-      latest_version=$(git tag --list "v*" --sort "-refname" | head -1)
+      latest_version=$(git tag --list "v*" --sort "-v:refname" | head -1)
       next_version=$(echo ${latest_version} | awk -F. -v OFS=. '{$NF += 1 ; print}')
       printf "Release $next_version? (Current release is $latest_version) [yN] "
       read answer
