@@ -25,6 +25,3 @@ jobs:
 
       - name: Test
         run: go test -v ./...
-
-      - name: Docker build
-        run: docker build -t gibo:latest .
