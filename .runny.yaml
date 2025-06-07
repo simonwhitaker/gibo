@@ -16,3 +16,6 @@ commands:
       fi
   test:
     run: go test ./...
+
+  update-deps:
+    run: go get -u . && go mod tidy
