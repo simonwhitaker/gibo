@@ -13,7 +13,7 @@ func init() {
 
 var dumpCmd = &cobra.Command{
 	Use:       "dump",
-	Short:     "Dump a boilerplate",
+	Short:     "Dump one or more named boilerplates",
 	Args:      cobra.MinimumNArgs(1),
 	ValidArgs: utils.ListBoilerplatesNoError(),
 	Run: func(cmd *cobra.Command, args []string) {
