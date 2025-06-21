@@ -32,3 +32,10 @@ func (m *Gibo) Test(ctx context.Context,
 		WithExec([]string{"go", "test", "./..."}).
 		Stdout(ctx)
 }
+
+func (m *Gibo) Vet(ctx context.Context,
+	src *dagger.Directory) (string, error) {
+	return m.BuildEnv(src).
+		WithExec([]string{"go", "vet", "./..."}).
+		Stdout(ctx)
+}
