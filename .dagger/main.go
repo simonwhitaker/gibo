@@ -7,7 +7,8 @@ import (
 
 type Gibo struct{}
 
-func (m *Gibo) BuildEnv(src *dagger.Directory,
+// Build a build-stage gibo image
+func (m *Gibo) Build(src *dagger.Directory,
 	// +optional
 	arch,
 	// +optional
@@ -24,33 +25,31 @@ func (m *Gibo) BuildEnv(src *dagger.Directory,
 	if os != "" {
 		container = container.WithEnvVariable("GOOS", os)
 	}
-	return container.WithExec([]string{"go", "mod", "download"})
-}
-
-// Build the gibo Docker container image.
-func (m *Gibo) Build(src *dagger.Directory,
-	// +optional
-	arch,
-	// +optional
-	os string) *dagger.Container {
-	return m.BuildEnv(src, arch, os).
+	return container.
+		WithExec([]string{"go", "mod", "download"}).
 		WithExec([]string{"go", "build", "-o", "gibo"})
 }
 
-// Build the gibo binary. If arch and os are not specified, it will use the current platform's architecture and OS.
-func (m *Gibo) BuildBinary(ctx context.Context,
+// Build the gibo distribution image.
+func (m *Gibo) Dist(ctx context.Context,
 	src *dagger.Directory,
 	// +optional
 	arch,
 	// +optional
-	os string) *dagger.File {
-	return m.Build(src, arch, os).File("/app/gibo")
+	os string) *dagger.Container {
+	builder := m.Build(src, arch, os)
+
+	runImage := dag.Container().From("alpine").
+		WithFile("/gibo", builder.File("/app/gibo")).
+		WithExec([]string{"/gibo", "update"})
+
+	return runImage.WithEntrypoint([]string{"/gibo"})
 }
 
 // Run the test suite for gibo.
 func (m *Gibo) Test(ctx context.Context,
 	src *dagger.Directory) (string, error) {
-	return m.BuildEnv(src, "", "").
+	return m.Build(src, "", "").
 		WithExec([]string{"go", "test", "./..."}).
 		Stdout(ctx)
 }
@@ -58,7 +57,7 @@ func (m *Gibo) Test(ctx context.Context,
 // Run the vet tool for gibo.
 func (m *Gibo) Vet(ctx context.Context,
 	src *dagger.Directory) (string, error) {
-	return m.BuildEnv(src, "", "").
+	return m.Build(src, "", "").
 		WithExec([]string{"go", "vet", "./..."}).
 		Stdout(ctx)
 }
