@@ -2,6 +2,7 @@
 
 # This is an example .goreleaser.yml file with some sensible defaults.
 # Make sure to check the documentation at https://goreleaser.com
+version: 2
 before:
   hooks:
     # You may remove this if you don't use go modules.
@@ -19,7 +20,8 @@ builds:
       "-s -w -X github.com/simonwhitaker/gibo/cmd.version={{.Version}}"
 
 archives:
-  - format: tar.gz
+  - formats:
+      - tar.gz
     # this name template makes the OS and Arch compatible with the results of uname.
     name_template: >-
       {{ .ProjectName }}_
@@ -31,9 +33,12 @@ archives:
     # use zip for windows archives
     format_overrides:
       - goos: windows
-        format: zip
-brews:
+        formats:
+          - zip
+
+homebrew_casks:
   - name: gibo
+    directory: Casks
     homepage: https://github.com/simonwhitaker/gibo
     repository:
       owner: simonwhitaker
@@ -41,11 +46,17 @@ brews:
     commit_author:
       name: Simon Whitaker
       email: sw@netcetera.org
+    hooks:
+      post:
+        install: |
+          if OS.mac?
+            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/gibo"]
+          end
 
 checksum:
   name_template: "checksums.txt"
 snapshot:
-  name_template: "{{ incpatch .Version }}-next"
+  version_template: "{{ incpatch .Version }}-next"
 changelog:
   sort: asc
   filters:
