@@ -19,3 +19,6 @@ commands:
 
   update-deps:
     run: go get -u . && go mod tidy
+
+  check-goreleaser:
+    run: goreleaser check .goreleaser.yaml .goreleaser.windows.yaml
