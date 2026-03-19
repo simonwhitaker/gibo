@@ -17,11 +17,14 @@ jobs:
     # Homebrew formula
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - &checkout_step
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      - run: git fetch --force --tags
-      - uses: actions/setup-go@v5
+      - &fetch_tags_step
+        run: git fetch --force --tags
+      - &setup_go_step
+        uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
       # More assembly might be required: Docker logins, GPG, etc. It all depends
@@ -39,13 +42,9 @@ jobs:
     # chocolatey package
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - run: git fetch --force --tags
-      - uses: actions/setup-go@v5
-        with:
-          go-version: stable
+      - *checkout_step
+      - *fetch_tags_step
+      - *setup_go_step
       # More assembly might be required: Docker logins, GPG, etc. It all depends
       # on your needs.
       - uses: goreleaser/goreleaser-action@v6
