@@ -27,6 +27,19 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version-file: go.mod
+
+      - &create_github_app_token_step
+        name: Create GitHub App token
+        uses: actions/create-github-app-token@v2
+        id: github-app-token
+        with:
+          app-id: ${{ vars.RELEASE_APP_ID }}
+          private-key: ${{ secrets.RELEASE_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: |
+            gibo
+            homebrew-tap
+
       # More assembly might be required: Docker logins, GPG, etc. It all depends
       # on your needs.
       - uses: goreleaser/goreleaser-action@v6
@@ -36,7 +49,7 @@ jobs:
           version: latest
           args: release --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.github-app-token.outputs.token }}
   goreleaser-windows:
     # Generates the Windows artefacts for the release, updates the gibo
     # chocolatey package
@@ -45,6 +58,7 @@ jobs:
       - *checkout_step
       - *fetch_tags_step
       - *setup_go_step
+      - *create_github_app_token_step
       # More assembly might be required: Docker logins, GPG, etc. It all depends
       # on your needs.
       - uses: goreleaser/goreleaser-action@v6
@@ -54,7 +68,7 @@ jobs:
           version: latest
           args: release -f .goreleaser.windows.yaml --clean
         env:
-          GITHUB_TOKEN: ${{ secrets.PUBLISHER_TOKEN }}
+          GITHUB_TOKEN: ${{ steps.github-app-token.outputs.token }}
           CHOCOLATEY_API_KEY: ${{ secrets.CHOCOLATEY_API_KEY }}
   homebrew_core:
     runs-on: ubuntu-latest
