@@ -52,6 +52,15 @@ homebrew_casks:
           if OS.mac?
             system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/gibo"]
           end
+    generate_completions_from_executable:
+      args:
+        - "completion"
+      shell_parameter_format: cobra
+      shells:
+        - bash
+        - zsh
+        - fish
+        - powershell
 
 checksum:
   name_template: "checksums.txt"
