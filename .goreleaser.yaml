@@ -60,7 +60,6 @@ homebrew_casks:
         - bash
         - zsh
         - fish
-        - powershell
 
 checksum:
   name_template: "checksums.txt"
