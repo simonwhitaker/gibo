@@ -1,6 +1,4 @@
-# To release a new version automatically
-
-Just push a version tag (e.g. `v3.0.1`) to Github.
+# Contributing
 
 ## Pre-commit checks
 
@@ -19,7 +17,13 @@ Run the configured checks manually with:
 prek run --all-files
 ```
 
-## To release a new version manually
+## Releases
+
+### To release a new version automatically
+
+Just push a version tag (e.g. `v3.0.1`) to Github.
+
+### To release a new version manually
 
 1. Install [GoReleaser](https://goreleaser.com/):
 
