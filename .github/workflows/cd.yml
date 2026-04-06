@@ -77,6 +77,9 @@ jobs:
       - name: Check out the repo
         uses: actions/checkout@v4
 
+      - name: Check Dockerfile Go version sync
+        run: ./tools/sync-go-version.sh --check
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
 

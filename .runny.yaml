@@ -18,7 +18,13 @@ commands:
     run: go test ./...
 
   update-deps:
-    run: go get -u . && go mod tidy
+    run: |
+      go get -u .
+      go mod tidy
+      ./tools/sync-go-version.sh
+
+  check-go-version-sync:
+    run: ./tools/sync-go-version.sh --check
 
   check-goreleaser:
     run: goreleaser check .goreleaser.yaml .goreleaser.windows.yaml
