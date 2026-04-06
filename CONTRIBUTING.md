@@ -1,8 +1,29 @@
-# To release a new version automatically
+# Contributing
+
+## Pre-commit checks
+
+This repository uses `prek` for local pre-commit checks.
+
+Install and enable the hooks with:
+
+```sh
+brew install prek
+prek install
+```
+
+Run the configured checks manually with:
+
+```sh
+prek run --all-files
+```
+
+## Releases
+
+### To release a new version automatically
 
 Just push a version tag (e.g. `v3.0.1`) to Github.
 
-## To release a new version manually
+### To release a new version manually
 
 1. Install [GoReleaser](https://goreleaser.com/):
 

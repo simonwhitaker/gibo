@@ -1,0 +1,9 @@
+repos:
+  - repo: local
+    hooks:
+      - id: sync-go-version
+        name: Sync Go version
+        language: system
+        entry: tools/sync-go-version.sh
+        always_run: true
+        pass_filenames: false
