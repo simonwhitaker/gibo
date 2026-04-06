@@ -12,5 +12,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Check Dockerfile Go version sync
+        run: ./tools/sync-go-version.sh --check
+
       - name: Docker build
         run: docker build -t gibo:latest .
