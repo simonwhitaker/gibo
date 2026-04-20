@@ -40,12 +40,19 @@ func cloneRepo(repo string) error {
 func cloneIfNeeded() error {
 	fileInfo, err := os.Stat(RepoDir())
 	if os.IsNotExist(err) {
-		err = cloneRepo(RepoDir())
-		if err != nil {
+		return cloneRepo(RepoDir())
+	}
+	if err != nil {
+		return err
+	}
+	if !fileInfo.IsDir() {
+		return fmt.Errorf("%v exists but is not a directory", RepoDir())
+	}
+	if _, err := git.PlainOpen(RepoDir()); err != nil {
+		if err := os.RemoveAll(RepoDir()); err != nil {
 			return err
 		}
-	} else if !fileInfo.IsDir() {
-		return fmt.Errorf("%v exists but is not a directory", RepoDir())
+		return cloneRepo(RepoDir())
 	}
 	return nil
 }
@@ -134,7 +141,9 @@ func ListBoilerplatesNoError() []string {
 }
 
 func Update() (string, error) {
-	cloneIfNeeded()
+	if err := cloneIfNeeded(); err != nil {
+		return "", err
+	}
 	r, err := git.PlainOpen(RepoDir())
 	if err != nil {
 		return "", err
