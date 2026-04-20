@@ -49,6 +49,9 @@ func cloneIfNeeded() error {
 		return fmt.Errorf("%v exists but is not a directory", RepoDir())
 	}
 	if _, err := git.PlainOpen(RepoDir()); err != nil {
+		if err != git.ErrRepositoryNotExists {
+			return err
+		}
 		if err := os.RemoveAll(RepoDir()); err != nil {
 			return err
 		}
