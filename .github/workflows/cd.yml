@@ -48,7 +48,7 @@ jobs:
         with:
           # either 'goreleaser' (default) or 'goreleaser-pro':
           distribution: goreleaser
-          version: latest
+          version: "~> v2"
           args: release --clean
         env:
           GITHUB_TOKEN: ${{ steps.github-app-token.outputs.token }}
@@ -70,7 +70,7 @@ jobs:
         with:
           # either 'goreleaser' (default) or 'goreleaser-pro':
           distribution: goreleaser
-          version: latest
+          version: "~> v2"
           args: release -f .goreleaser.windows.yaml --clean
         env:
           GITHUB_TOKEN: ${{ steps.github-app-token.outputs.token }}
