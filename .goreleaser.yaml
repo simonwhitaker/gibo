@@ -47,7 +47,7 @@ homebrew_casks:
       name: Simon Whitaker
       email: sw@netcetera.org
     hooks:
-      post:
+      pre:
         install_steps: |
           on_macos do
             run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{ .StagedPath }}/gibo"]
