@@ -48,9 +48,9 @@ homebrew_casks:
       email: sw@netcetera.org
     hooks:
       post:
-        install: |
-          if OS.mac?
-            system_command "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "#{staged_path}/gibo"]
+        install_steps: |
+          on_macos do
+            run "/usr/bin/xattr", args: ["-dr", "com.apple.quarantine", "{{ .StagedPath }}/gibo"]
           end
     generate_completions_from_executable:
       shell_parameter_format: cobra
